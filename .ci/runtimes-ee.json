@@ -537,7 +537,7 @@
 {"suite":"integration","filename":"spec/02-integration/02-cmd/04-version_spec.lua","expectedDuration":0.73}
 {"suite":"integration","filename":"spec-ee/02-integration/22-plugins-iterator/12-precedence_bi_scopes_rs_spec.lua","expectedDuration":2.6}
 {"suite":"integration","filename":"spec-ee/02-integration/22-plugins-iterator/11-precedence_single_scopes_c_spec.lua","expectedDuration":2.53}
-{"suite":"integration","filename":"spec-ee/02-integration/21-profiling/01-cpu_spec.lua","expectedDuration":98.31}
+{"suite":"integration","filename":"spec-ee/02-integration/21-profiling/01-cpu_spec.lua","expectedDuration":94.94}
 {"suite":"integration","filename":"spec-ee/02-integration/20-dp-resilience/01-basic_function_spec.lua","expectedDuration":25.56}
 {"suite":"integration","filename":"spec-ee/02-integration/18-websockets/01-proxy-parity_spec.lua","expectedDuration":61.84}
 {"suite":"integration","filename":"spec-ee/02-integration/17-keyring/05-keyring-cluster_spec.lua","expectedDuration":6.87}
