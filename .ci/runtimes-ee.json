@@ -34,7 +34,7 @@
 {"suite":"integration","filename":"spec/02-integration/000-new-dao/06-migrations_state_spec.lua","expectedDuration":0.93}
 {"suite":"integration","filename":"spec-ee/02-integration/22-plugins-iterator/05-precedence_multiple_consumer_groups_spec.lua","expectedDuration":4.66}
 {"suite":"integration","filename":"spec-ee/02-integration/22-plugins-iterator/04-fti-with-portal_spec.lua","expectedDuration":3.27}
-{"suite":"integration","filename":"spec-ee/02-integration/19-vaults/02-ttl_spec.lua","expectedDuration":63.76}
+{"suite":"integration","filename":"spec-ee/02-integration/19-vaults/02-ttl_spec.lua","expectedDuration":58.24}
 {"suite":"integration","filename":"spec-ee/02-integration/19-vaults/01-free_vaults_spec.lua","expectedDuration":5.74}
 {"suite":"integration","filename":"spec-ee/02-integration/16-plugins-ordering/01-ordering-overrides_spec.lua","expectedDuration":14.3}
 {"suite":"integration","filename":"spec-ee/02-integration/15-consumer-groups/05-set-consumer-groups_spec.lua","expectedDuration":3.58}
