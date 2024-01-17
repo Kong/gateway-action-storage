@@ -292,7 +292,7 @@
 {"suite":"integration","filename":"spec-ee/02-integration/13-event_hooks/01-event_hooks_api_spec.lua","expectedDuration":2.21}
 {"suite":"integration","filename":"spec-ee/02-integration/11-cmd/01-runner_spec.lua","expectedDuration":4.86}
 {"suite":"integration","filename":"spec-ee/02-integration/08-new-dao/02-rbac_iterator_spec.lua","expectedDuration":0.55}
-{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/06-oidc_auth_spec.lua","expectedDuration":4.11}
+{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/06-oidc_auth_spec.lua","expectedDuration":4.03}
 {"suite":"integration","filename":"spec-ee/02-integration/04-dev-portal/15-spec_page_render_spec.lua","expectedDuration":2.3}
 {"suite":"integration","filename":"spec-ee/02-integration/04-dev-portal/07-consumer_routes_spec.lua","expectedDuration":2.75}
 {"suite":"integration","filename":"spec-ee/02-integration/04-dev-portal/13-portal_applications/02-external-oauth2/04-services_admin_api_spec.lua","expectedDuration":2.97}
@@ -514,7 +514,7 @@
 {"suite":"integration","filename":"spec/02-integration/20-wasm/07-reports_spec.lua","expectedDuration":3.17}
 {"suite":"integration","filename":"spec/02-integration/20-wasm/06-clustering_spec.lua","expectedDuration":7.02}
 {"suite":"integration","filename":"spec/02-integration/14-tracing/03-tracer-pdk_spec.lua","expectedDuration":5.45}
-{"suite":"integration","filename":"spec/02-integration/14-tracing/02-propagation_spec.lua","expectedDuration":3.72}
+{"suite":"integration","filename":"spec/02-integration/14-tracing/02-propagation_spec.lua","expectedDuration":3.73}
 {"suite":"integration","filename":"spec/02-integration/11-dbless/01-respawn_spec.lua","expectedDuration":0.29}
 {"suite":"integration","filename":"spec/02-integration/10-go_plugins/01-reports_spec.lua","expectedDuration":0.33}
 {"suite":"integration","filename":"spec/02-integration/08-status_api/01-core_routes_spec.lua","expectedDuration":9.65}
