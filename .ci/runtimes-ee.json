@@ -172,7 +172,7 @@
 {"suite":"plugins","filename":"spec/03-plugins/15-response-transformer/02-body_transformer_spec.lua","expectedDuration":0.02}
 {"suite":"plugins","filename":"spec/03-plugins/06-statsd/01-log_spec.lua","expectedDuration":158.01}
 {"suite":"integration","filename":"spec-ee/02-integration/19-vaults/02-ttl_spec.lua","expectedDuration":185.02}
-{"suite":"integration","filename":"spec/02-integration/20-wasm/05-cache-invalidation_spec.lua","expectedDuration":55.91}
+{"suite":"integration","filename":"spec/02-integration/20-wasm/05-cache-invalidation_spec.lua","expectedDuration":57.48}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/31-stream_tls_spec.lua","expectedDuration":42.24}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/14-server_tokens_spec.lua","expectedDuration":38.89}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/33-request-aware-table_spec.lua","expectedDuration":32.3}
@@ -420,7 +420,7 @@
 {"suite":"plugins","filename":"spec/03-plugins/23-rate-limiting/04-access_spec.lua","expectedDuration":129.13}
 {"suite":"integration","filename":"spec-ee/02-integration/19-vaults/04-cache-invalidation_spec.lua","expectedDuration":69.67}
 {"suite":"integration","filename":"spec/02-integration/02-cmd/10-migrations_spec.lua","expectedDuration":56.89}
-{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/02-admin_api_authentication_spec.lua","expectedDuration":45.43}
+{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/02-admin_api_authentication_spec.lua","expectedDuration":44.55}
 {"suite":"plugins","filename":"spec/03-plugins/37-opentelemetry/04-exporter_spec.lua","expectedDuration":38.22}
 {"suite":"plugins","filename":"spec/03-plugins/26-prometheus/02-access_spec.lua","expectedDuration":37.22}
 {"suite":"integration","filename":"spec-ee/02-integration/17-keyring/01-keyring_spec.lua","expectedDuration":30.14}
@@ -504,7 +504,7 @@
 {"suite":"unit","filename":"spec/01-unit/28-plugins-iterator/02-lookup_cfg_spec.lua","expectedDuration":0.01}
 {"suite":"plugins","filename":"spec/03-plugins/26-prometheus/08-unit_spec.lua","expectedDuration":0.01}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/18-upstream_tls_spec.lua","expectedDuration":165.63}
-{"suite":"integration","filename":"spec/02-integration/02-cmd/02-start_stop_spec.lua","expectedDuration":75.34}
+{"suite":"integration","filename":"spec/02-integration/02-cmd/02-start_stop_spec.lua","expectedDuration":78}
 {"suite":"integration","filename":"spec-ee/02-integration/03-vitals/08-hybrid_spec.lua","expectedDuration":53.23}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/10-balancer/04-round-robin_spec.lua","expectedDuration":48.22}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/25-upstream_keepalive_spec.lua","expectedDuration":41.62}
@@ -589,4 +589,4 @@
 {"suite":"plugins","filename":"spec/03-plugins/34-zipkin/request_tags_spec.lua","expectedDuration":0.01}
 {"suite":"plugins","filename":"spec/03-plugins/10-basic-auth/01-crypto_spec.lua","expectedDuration":0.01}
 {"suite":"unit","filename":"spec/01-unit/28-plugins-iterator/01-compound_key_spec.lua","expectedDuration":0.01}
-{"suite":"integration","filename":"spec/03-plugins/23-rate-limiting/04-access_spec.lua","expectedDuration":200.82}
+{"suite":"integration","filename":"spec/03-plugins/23-rate-limiting/04-access_spec.lua","expectedDuration":187.37}
