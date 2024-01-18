@@ -420,7 +420,7 @@
 {"suite":"plugins","filename":"spec/03-plugins/23-rate-limiting/04-access_spec.lua","expectedDuration":129.13}
 {"suite":"integration","filename":"spec-ee/02-integration/19-vaults/04-cache-invalidation_spec.lua","expectedDuration":69.67}
 {"suite":"integration","filename":"spec/02-integration/02-cmd/10-migrations_spec.lua","expectedDuration":56.89}
-{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/02-admin_api_authentication_spec.lua","expectedDuration":43.66}
+{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/02-admin_api_authentication_spec.lua","expectedDuration":43.49}
 {"suite":"plugins","filename":"spec/03-plugins/37-opentelemetry/04-exporter_spec.lua","expectedDuration":38.22}
 {"suite":"plugins","filename":"spec/03-plugins/26-prometheus/02-access_spec.lua","expectedDuration":37.22}
 {"suite":"integration","filename":"spec-ee/02-integration/17-keyring/01-keyring_spec.lua","expectedDuration":30.14}
