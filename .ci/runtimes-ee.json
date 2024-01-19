@@ -1,7 +1,7 @@
 {"suite":"integration","filename":"spec/03-plugins/23-rate-limiting/04-access_spec.lua","expectedDuration":187.37}
-{"suite":"integration","filename":"spec/02-integration/02-cmd/02-start_stop_spec.lua","expectedDuration":5.26}
+{"suite":"integration","filename":"spec/02-integration/02-cmd/02-start_stop_spec.lua","expectedDuration":4.15}
 {"suite":"integration","filename":"spec/02-integration/20-wasm/05-cache-invalidation_spec.lua","expectedDuration":61.25}
-{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/02-admin_api_authentication_spec.lua","expectedDuration":40.75}
+{"suite":"integration","filename":"spec-ee/02-integration/05-admin-gui/02-admin_api_authentication_spec.lua","expectedDuration":40.78}
 {"suite":"integration","filename":"spec/02-integration/05-proxy/06-ssl_spec.lua","expectedDuration":111.97}
 {"suite":"integration","filename":"spec/02-integration/21-request-debug/01-request-debug_spec.lua","expectedDuration":95.99}
 {"suite":"integration","filename":"spec-ee/02-integration/18-websockets/01-proxy-parity_spec.lua","expectedDuration":62.08}
