@@ -915,3 +915,4 @@
 {"suite":"plugins","filename":"spec/03-plugins/07-loggly/01-log_spec.lua","expectedDuration":2.79}
 {"suite":"plugins","filename":"spec-ee/03-plugins/01-plugins_order_spec.lua","expectedDuration":0.24}
 {"suite":"plugins","filename":"spec-ee/03-plugins/16-response-transformer/06-feature_flag_limit_body_spec.lua","expectedDuration":0.42}
+{"suite":"unit","filename":"spec/01-unit/28-plugins-iterator/02-lookup_cfg_spec.lua","expectedDuration":0.01}
