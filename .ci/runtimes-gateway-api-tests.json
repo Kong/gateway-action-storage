@@ -1,7 +1,7 @@
-{"suite":"gateway-api-tests","filename":"unknown-path","expectedDuration":93.31}
-{"suite":"gateway-api-tests","filename":"test/gateway/admin-api/websocket/websocket.spec.ts","expectedDuration":0.15}
+{"suite":"gateway-api-tests","filename":"unknown-path","expectedDuration":214.78}
+{"suite":"gateway-api-tests","filename":"test/gateway/admin-api/websocket/websocket.spec.ts","expectedDuration":0.17}
 {"suite":"gateway-api-tests","filename":"test/gateway/plugins/jwt-signer.spec.ts","expectedDuration":33.48}
-{"suite":"gateway-api-tests","filename":"test/gateway/plugins/ai/ai-proxy-advanced-restful.spec.ts","expectedDuration":39.74}
+{"suite":"gateway-api-tests","filename":"test/gateway/plugins/ai/ai-proxy-advanced-restful.spec.ts","expectedDuration":41.32}
 {"suite":"gateway-api-tests","filename":"test/gateway/plugins/ai/ai-proxy.spec.ts","expectedDuration":146.15}
 {"suite":"gateway-api-tests","filename":"test/gateway/plugins/kafka-log.spec.ts","expectedDuration":103.42}
 {"suite":"gateway-api-tests","filename":"test/gateway/plugins/prometheus.spec.ts","expectedDuration":128.49}
