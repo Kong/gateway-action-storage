@@ -124,6 +124,7 @@
   "dashscope.chat": "qwen-plus",
   "dashscope.chat.latest": "qwen-3-32b",
   "dashscope.embeddings": "text-embedding-v3",
+  "dashscope.embeddings.next": "text-embedding-v4",
   "azure.rerank": "semantic-ranker-default@latest",
   "azure.anthropic.sonnet.foundry": "claude-sonnet-4-5-foundry",
   "test.chat.override": "try-to-override-the-model"
