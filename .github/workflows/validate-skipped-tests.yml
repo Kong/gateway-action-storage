@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "skipped-tests/**"
+  workflow_dispatch:
 
 jobs:
   validate:
