@@ -1,0 +1,15 @@
+skips_all_branches:
+  - name: "solace-log"
+    reason: "Flaky under load"    
+    owner: "kally.shi@konghq.com"
+    note: "Tracked in KAG-xxx, fix expected in 3.11" 
+
+skips:
+  - name: "licenses"
+    reason: "Flaky under load" 
+    owner: "kally.shi@konghq.com"
+    branches:
+      - "test/parallel-isolation"
+
+reset_branches:
+  - "fix/openai-compat-bedrock"
