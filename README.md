@@ -75,7 +75,7 @@ Usage in a kong-ee workflow:
 
 - name: Get skip list
   id: skip
-  run: echo "value=$(node gateway-action-storage/skipped-tests/generate.js)" >> $GITHUB_OUTPUT
+  run: echo "value=$(node gateway-action-storage/skipped-tests/tools/generate.js)" >> $GITHUB_OUTPUT
 
 - name: Run tests
   env:
