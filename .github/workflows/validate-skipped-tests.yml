@@ -1,0 +1,56 @@
+name: Validate Skipped Tests
+
+on:
+  pull_request:
+    paths:
+      - "skipped-tests/**"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: skipped-tests/tools
+
+      - name: Validate skipped.yaml
+        run: node validate.js
+        working-directory: skipped-tests/tools
+
+      - name: Dump skipped.yaml on failure
+        if: failure()
+        run: cat skipped-tests/skipped.yaml
+
+      - name: Validate generate.js output
+        working-directory: skipped-tests/tools
+        run: |
+          set -euo pipefail
+
+          output=$(node generate.js)
+          echo "Generated output: $output"
+
+          # ------------------------
+          # empty output = skip validation
+          # ------------------------
+          if [ -z "$output" ]; then
+            echo "Empty output, skipping format validation."
+            exit 0
+          fi
+
+          # ------------------------
+          # format: key:value;key:value
+          # ------------------------
+          printf '%s' "$output" | grep -qE '^([^:;]+:[^:;]+(;[^:;]+:[^:;]+)*)$' \
+            || {
+              echo "::error title=Invalid format::generate.js output format is invalid"
+              exit 1
+            }
+
+          echo "generate.js output format is valid."
