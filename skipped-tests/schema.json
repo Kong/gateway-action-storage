@@ -28,6 +28,7 @@
       }
     },
     "global_entry": {
+      "type": "object",
       "allOf": [{ "$ref": "#/definitions/base_fields" }],
       "additionalProperties": false,
       "properties": {
@@ -35,6 +36,7 @@
       }
     },
     "branch_entry": {
+      "type": "object",
       "allOf": [{ "$ref": "#/definitions/base_fields" }],
       "required": ["name", "reason", "owner", "branches"],
       "additionalProperties": false,
