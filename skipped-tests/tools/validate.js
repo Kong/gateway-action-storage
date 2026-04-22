@@ -1,10 +1,11 @@
-const fs = require("fs");
-const path = require("path");
-const yaml = require("js-yaml");
-const Ajv = require("ajv");
-const addFormats = require("ajv-formats");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import yaml from "js-yaml";
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
 
-const ROOT = path.join(__dirname, "..");
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const schema = JSON.parse(fs.readFileSync(path.join(ROOT, "schema.json"), "utf8"));
 const raw = fs.readFileSync(path.join(ROOT, "skipped.yaml"), "utf8");
 const data = yaml.load(raw) ?? {};

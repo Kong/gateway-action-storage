@@ -1,8 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const yaml = require("js-yaml");
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import yaml from "js-yaml";
 
-const ROOT = path.join(__dirname, "..");
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const raw = fs.readFileSync(path.join(ROOT, "skipped.yaml"), "utf8");
 const data = yaml.load(raw) ?? {};
 
