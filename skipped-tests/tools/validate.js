@@ -10,7 +10,7 @@ const schema = JSON.parse(fs.readFileSync(path.join(ROOT, "schema.json"), "utf8"
 const raw = fs.readFileSync(path.join(ROOT, "skipped.yaml"), "utf8");
 const data = yaml.load(raw) ?? {};
 
-const ajv = new Ajv();
+const ajv = new Ajv({ allErrors: true });
 addFormats(ajv);
 
 const validate = ajv.compile(schema);

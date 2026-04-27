@@ -23,7 +23,7 @@
       "properties": {
         "name":   { "type": "string", "minLength": 1 },
         "reason": { "type": "string", "minLength": 1 },
-        "owner":  { "type": "string", "minLength": 1 },
+        "owner":  { "type": "string", "format": "email", "minLength": 1 },
         "note":   { "type": "string" }
       }
     },
