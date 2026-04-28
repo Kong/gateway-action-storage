@@ -16,6 +16,7 @@ skips_all_branches:
     owner: "jp.zhou@konghq.com"
   - name: "app-dynamics"
     reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
   - name: "ai-otel"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -39,26 +40,6 @@ skips_all_branches:
     owner: "jp.zhou@konghq.com"
 
 skips:
-  - name: "licenses"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "test/parallel-isolation"
-  - name: "ai-proxy-advanced-chat-anthropic"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "17639/merge"
-  - name: "azure-functions-secret-reference"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "backport-17263-to-ai-master"
-  - name: "ai-proxy-advanced-tools-use"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "backport-17263-to-ai-master"
 
 reset_branches:
   - "fix/openai-compat-bedrock"
