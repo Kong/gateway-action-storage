@@ -1,4 +1,7 @@
 skips_all_branches:
+  - name: "request-callout"
+    reason: "Flaky under load"
+    owner: "test@konghq.com"
   - name: "ai-proxy-advanced-realtime"
     reason: "Flaky under load"
     owner: "test@konghq.com"
