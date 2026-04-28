@@ -31,9 +31,26 @@ jobs:
       - name: Validate generate.js output
         working-directory: skipped-tests/tools
         run: |
+          set -euo pipefail
+
           output=$(node generate.js)
           echo "Generated output: $output"
+
+          # ------------------------
+          # empty output = skip validation
+          # ------------------------
+          if [ -z "$output" ]; then
+            echo "Empty output, skipping format validation."
+            exit 0
+          fi
+
+          # ------------------------
           # format: key:value;key:value
-          echo "$output" | grep -qE '^([^:;]+:[^;]+(;[^:;]+:[^:;]+)*)?$' \
-            || { echo "ERROR: invalid format"; exit 1; }
+          # ------------------------
+          printf '%s' "$output" | grep -qE '^([^:;]+:[^:;]+(;[^:;]+:[^:;]+)*)$' \
+            || {
+              echo "::error title=Invalid format::generate.js output format is invalid"
+              exit 1
+            }
+
           echo "generate.js output format is valid."
