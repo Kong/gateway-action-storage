@@ -1,8 +1,8 @@
 skips_all_branches:
-  - reason: "Flaky test"
+  - name: "azure-functions-secret-reference"
+    reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
   - name: "ai-proxy-advanced-realtime"
-    reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
   - name: "solace-log"
     reason: "Flaky test"
