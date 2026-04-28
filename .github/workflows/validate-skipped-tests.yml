@@ -23,3 +23,13 @@ jobs:
       - name: Validate skipped.yaml
         run: node validate.js
         working-directory: skipped-tests/tools
+
+      - name: Validate generate.js output
+        working-directory: skipped-tests/tools
+        run: |
+          output=$(node generate.js)
+          echo "Generated output: $output"
+          # format: key:value;key:value
+          printf '%s' "$output" | grep -qE '^([^:;]+:[^;]+(;[^:;]+:[^:;]+)*)?$' \
+            || { echo "ERROR: invalid format"; exit 1; }
+          echo "generate.js output format is valid."
