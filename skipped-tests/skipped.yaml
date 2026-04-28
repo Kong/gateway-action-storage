@@ -4,7 +4,7 @@ skips_all_branches:
     owner: "jp.zhou@konghq.com"
   - name: "ai-proxy-advanced-realtime"
     reason: "Flaky test"
-    # owner: "jp.zhou@konghq.com"
+    owner: "jp.zhou@konghq.com"
   - name: "solace-log"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -35,8 +35,7 @@ skips_all_branches:
   - name: "ai-proxy-advanced-claude-code"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "ai-proxy-advanced-tools"
-    reason: "Flaky test"
+  - reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
 
 skips:
