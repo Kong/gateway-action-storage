@@ -39,8 +39,6 @@ skips_all_branches:
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
 
-skips:
-
 reset_branches:
   - "fix/openai-compat-bedrock"
   - "tests/re-eval-skipped-at-runtime2"
