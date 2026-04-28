@@ -23,20 +23,21 @@ if (!validate(data)) {
   process.exit(1);
 }
 
-// a test name must be unique across both skips_all_branches and skips
-const allNames = [
-  ...(data.skips_all_branches ?? []).map((e) => e.name),
-  ...(data.skips ?? []).map((e) => e.name),
-];
-const seenNames = new Set();
-const dupNames = new Set();
-for (const name of allNames) {
-  if (seenNames.has(name)) dupNames.add(name);
-  seenNames.add(name);
-}
-if (dupNames.size > 0) {
-  console.error(`Duplicate test names found: ${[...dupNames].join(", ")}`);
-  process.exit(1);
+// a test name must be unique within each section
+for (const [section, entries] of [
+  ["skips_all_branches", data.skips_all_branches ?? []],
+  ["skips", data.skips ?? []],
+]) {
+  const seen = new Set();
+  const dups = new Set();
+  for (const { name } of entries) {
+    if (seen.has(name)) dups.add(name);
+    seen.add(name);
+  }
+  if (dups.size > 0) {
+    console.error(`Duplicate test names in ${section}: ${[...dups].join(", ")}`);
+    process.exit(1);
+  }
 }
 
 // a branch name must appear at most once in reset_branches
