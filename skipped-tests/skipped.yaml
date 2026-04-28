@@ -35,15 +35,16 @@ skips_all_branches:
   - name: "ai-proxy-advanced-claude-code"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - reason: "Flaky test"
+  - name: "ai-proxy-advanced-tools"
+    reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
 
 skips:
   - name: "licenses"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-    branches:
-      - "test/parallel-isolation"
+    # branches:
+    #   - "test/parallel-isolation"
   - name: "ai-proxy-advanced-chat-anthropic"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
