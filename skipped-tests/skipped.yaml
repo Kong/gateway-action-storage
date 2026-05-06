@@ -57,7 +57,7 @@ skips:
     branches:
       - "backport-17263-to-ai-master"
   - name: "ai-proxy-advanced-tools-use"
-    reason: "Flaky test"
+    reason: "Flaky test - ai"
     owner: "jp.zhou@konghq.com"
     branches:
       - "backport-17263-to-ai-master"
@@ -77,3 +77,4 @@ reset_branches:
   - "test/3.12/ai-proxy-advanced-tools"
   - "test/3.13/ai-proxy-advanced-tools"
   - "test/3.11/ai-proxy-advanced-tools"
+  -   123
