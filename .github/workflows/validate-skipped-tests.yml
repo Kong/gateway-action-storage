@@ -1,7 +1,7 @@
 name: Validate Skipped Tests
 
 on:
-  pull_request:
+  push:
     paths:
       - "skipped-tests/**"
   workflow_dispatch:
@@ -9,6 +9,9 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: skipped-tests/tools
     steps:
       - uses: actions/checkout@v4
 
@@ -18,22 +21,19 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: skipped-tests/tools
 
       - name: Validate skipped.yaml
-        run: node validate.js
-        working-directory: skipped-tests/tools
+        run: npm run validate
 
       - name: Dump skipped.yaml on failure
         if: failure()
         run: cat skipped-tests/skipped.yaml
 
-      - name: Validate generate.js output
-        working-directory: skipped-tests/tools
+      - name: Generate final skip list
         run: |
           set -euo pipefail
 
-          output=$(node generate.js)
+          output=$(npm run --silent generate)
           echo "Generated output: $output"
 
           # ------------------------

@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+TARGET_FILE="skipped-tests/skipped.yaml"
+TOOLS_DIR="skipped-tests/tools"
+
+# ----------------------------
+# logger
+# ----------------------------
+log() {
+  local level="$1"
+  shift
+  echo "[$level] $*" >&2
+}
+
+# ----------------------------
+# dependency check (minimal)
+# ----------------------------
+require_cmd() {
+  command -v "$1" >/dev/null 2>&1 || {
+    log error "$1 is required but not installed"
+    exit 1
+  }
+}
+
+for cmd in git grep; do
+  require_cmd "$cmd"
+done
+
+# ----------------------------
+# only run when file is staged
+# ----------------------------
+git diff --cached --name-only --diff-filter=ACMR | grep -Fxq "$TARGET_FILE" || exit 0
+
+log info "[skipped-tests] Detected change in $TARGET_FILE; running lightweight checks..."
+
+# ----------------------------
+# file existence
+# ----------------------------
+[[ -f "$TARGET_FILE" ]] || {
+  log error "$TARGET_FILE does not exist"
+  exit 1
+}
+
+# ----------------------------
+# TAB check (portable, NO grep -P)
+# ----------------------------
+# POSIX-safe: matches literal tab via printf
+if LC_ALL=C grep -n "$(printf '\t')" "$TARGET_FILE" >/dev/null 2>&1; then
+  log error "tab indentation is not allowed in $TARGET_FILE"
+  exit 1
+fi
+
+# ----------------------------
+# required runtime
+# ----------------------------
+if ! command -v node >/dev/null 2>&1; then
+  log error "Node.js not found"
+  log error "Install Node.js first (example: brew install node or apt install nodejs npm)"
+  exit 1
+fi
+
+# ----------------------------
+# npm required to install dependencies
+# ----------------------------
+if ! command -v npm >/dev/null 2>&1; then
+  log error "npm not found"
+  log error "Install npm first (usually included with Node.js)"
+  exit 1
+fi
+
+# ----------------------------
+# dependency install check
+# ----------------------------
+if [[ ! -d "$TOOLS_DIR/node_modules" ]]; then
+  log error "Dependencies not installed in $TOOLS_DIR"
+  log error "Run: npm ci --prefix $TOOLS_DIR"
+  exit 1
+fi
+
+# ----------------------------
+# full YAML/schema validation via Node script
+# ----------------------------
+(
+  cd "$TOOLS_DIR"
+  node validate.js
+)
+
+log info "[skipped-tests] Pre-commit validation passed."

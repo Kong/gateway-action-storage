@@ -1,47 +1,72 @@
 # gateway-action-storage
 
-Storage repository for gateway CI configuration and actions.
+CI configuration and E2E skip management for gateway tests.
 
-## Contents
+This repo replaces the legacy `SKIP_E2E_TEST` variable with a version-controlled skip list in `skipped-tests/skipped.yaml`.
 
-### `.ci/`
-
-Runtime configuration for CI test suites (expected durations, test groupings). These files are machine-generated.
-
-### `skipped-tests/`
-
-Structured list of E2E tests that are currently skipped in CI. This replaces the `SKIP_E2E_TEST` GitHub Actions variable with a version-controlled, auditable approach.
-
-#### `skipped.yaml` format
+## skipped.yaml Format
 
 ```yaml
-skips_all_branches:       # skipped on every branch
+skips_all_branches:
   - name: "test-name"
     reason: "why it is skipped"
     owner: "email@konghq.com"
     note: "optional extra context"
 
-skips:                    # skipped on specific branches only
+skips:
   - name: "test-name"
     reason: "why it is skipped"
     owner: "email@konghq.com"
     branches:
       - "branch-name"
 
-reset_branches:           # branches that skip nothing
+reset_branches:
   - "branch-name"
 ```
 
+### Fields
+
 | Field | Required | Description |
 |-------|----------|-------------|
-| `name` | Yes | Test name as used in CI |
-| `reason` | Yes | Why the test is skipped |
-| `owner` | Yes | Who is responsible for re-enabling it (email) |
-| `note` | No | Additional context, ticket links, etc. |
-| `branches` | Yes (in `skips` only) | Branches this skip applies to |
+| name | Yes | Test name as used in CI |
+| reason | Yes | Why the test is skipped |
+| owner | Yes | Who is responsible for re-enabling it (email) |
+| note | No | Additional context, ticket links, etc. |
+| branches | Yes (in skips only) | Branches this skip applies to |
 
-All three top-level sections are optional. If a section is absent or empty, no skips are applied for that category.
+All top-level sections are optional. If a section is absent or empty, no skips are applied for that category.
 
-#### Adding or removing a skip
+## Update Flow (Repo Mode)
 
-Open a PR modifying `skipped-tests/skipped.yaml`. The PR check will automatically validate the file against the schema and fail if the format is invalid.
+When updating `skipped-tests/skipped.yaml`:
+
+- Pre-commit hook performs local format checks.
+- CI runs `validate.js` for schema + duplicate validation.
+- CI runs `generate.js` to ensure final skip list output can be generated.
+
+## Pre-commit Hook
+
+Run once in repository root:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The hook:
+
+- Performs lightweight format checks
+- Provides fast local feedback
+
+## Local Tool Setup
+
+Before running validation locally:
+
+```bash
+cd skipped-tests/tools
+npm install
+```
+
+This is required for:
+
+- validate.js
+- generate.js
