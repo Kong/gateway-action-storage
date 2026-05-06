@@ -77,4 +77,3 @@ reset_branches:
   - "test/3.12/ai-proxy-advanced-tools"
   - "test/3.13/ai-proxy-advanced-tools"
   - "test/3.11/ai-proxy-advanced-tools"
-  -   123
