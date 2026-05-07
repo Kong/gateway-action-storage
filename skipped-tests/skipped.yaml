@@ -39,10 +39,10 @@ skips_all_branches:
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     note: "Flaky tests"
-  - name: "router"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    note: "Flaky tests"
+  # - name: "router"
+  #   reason: "Flaky test"
+  #   owner: "jp.zhou@konghq.com"
+  #   note: "Flaky tests"
     
 skips:
   - name: "licenses"
