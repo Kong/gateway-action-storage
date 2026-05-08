@@ -35,36 +35,23 @@ skips_all_branches:
   - name: "ai-proxy-advanced-claude-code"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "ai-proxy-advanced-tools"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    note: "Flaky tests"
-  - name: "router"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    note: "Flaky tests"
-    
+
 skips:
-  - name: "licenses"
+  - name: "ai-aws-guardrails"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     branches:
-      - "test/parallel-isolation"
+      - "next/3.12.x.x"
+  - name: "ai-proxy-advanced-native-format"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+    branches:
+      - "next/3.12.x.x"
   - name: "ai-proxy-advanced-chat-anthropic"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     branches:
       - "17639/merge"
-  - name: "azure-functions-secret-reference"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "backport-17263-to-ai-master"
-  - name: "ai-proxy-advanced-tools-use"
-    reason: "Flaky test - ai"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "backport-17263-to-ai-master"
 
 reset_branches:
   - "fix/openai-compat-bedrock"
@@ -74,10 +61,7 @@ reset_branches:
   - "backport-17570-to-next/3.14.x.x"
   - "test/3.11/ai-proxy-advanced-emb-related"
   - "fix/solace-err-500"
-  - "AG-947"
-  - "next/3.12.x.x"
-  - "next/3.13.x.x"
-  - "AG-995"
-  - "test/3.12/ai-proxy-advanced-tools"
-  - "test/3.13/ai-proxy-advanced-tools"
-  - "test/3.11/ai-proxy-advanced-tools"
+  - "KAG-8847"
+  - "backport/pr-17814-ai-master"
+  - "backport-17639-to-next/3.11.x.x"
+  - "AG-1012"
