@@ -35,8 +35,8 @@ skips_all_branches:
 
 skips:
   - name: "router"
-    reason: "Flaky test"
-    owner: "Test skipped.yaml"
+    reason: "Test skipped.yaml"
+    owner: "kally.shi@konghq.com"
     branches:
       - "contrib/check-repo-skipped-tests"
       - "contrib/check-repo"
