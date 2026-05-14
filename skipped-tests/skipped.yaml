@@ -30,14 +30,17 @@ skips_all_branches:
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
   - name: "services"
-    reason: Test skipped.yaml"
+    reason: "Test skipped.yaml"
     owner: "kally.shi@konghq.com"
 
 skips:
   - name: "router"
-    reason: Test skipped.yaml"
-    owner: "kally.shi@konghq.com"
-    
+    reason: "Flaky test"
+    owner: "Test skipped.yaml"
+    branches:
+      - "contrib/check-repo-skipped-tests"
+      - "contrib/check-repo"
+
 reset_branches:
   - "fix/openai-compat-bedrock"
   - "tests/re-eval-skipped-at-runtime2"
