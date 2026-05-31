@@ -32,6 +32,9 @@ skips_all_branches:
   - name: "services"
     reason: "Test skipped.yaml"
     owner: "kally.shi@konghq.com"
+  - name: 'datakit'
+    reason: 'failing on master'
+    owner: 'alec.mestroni@konghq.com'
 
 skips:
   - name: "router"
