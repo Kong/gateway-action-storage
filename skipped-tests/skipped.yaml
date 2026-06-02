@@ -35,6 +35,9 @@ skips_all_branches:
   - name: 'datakit'
     reason: 'failing on master'
     owner: 'alec.mestroni@konghq.com'
+  - name: 'ai-proxy-advanced-load-balance'
+    reason: 'failing on master e.g. https://github.com/Kong/kong-ee/actions/runs/26826538807/job/79101160083?pr=18762#step:34:213'
+    owner: 'hayk.sardaryan@konghq.com'
 
 skips:
   - name: "router"
