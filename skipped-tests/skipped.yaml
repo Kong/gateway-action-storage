@@ -53,6 +53,19 @@ skips_all_branches:
   - name: "ai-proxy-advanced-chat-reasoning-gemini-public"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
+  - name: "otel-logs"
+    reason: "Need wait https://github.com/Kong/kong-ee/pull/18754 to be merged and backported to next/3.15.x.x"
+    owner: "kally.shi@konghq.com"
+  - name: "opentelemetry"
+    reason: "Need wait https://github.com/Kong/kong-ee/pull/18754 to be merged and backported to next/3.15.x.x"
+    owner: "kally.shi@konghq.com"
+  - name: "ai-a2a-opentelemetry-metrics"
+    reason: "Need wait https://github.com/Kong/kong-ee/pull/18754 to be merged and backported to next/3.15.x.x"
+    owner: "kally.shi@konghq.com"
+  - name: "ai-a2a-opentelemetry-traces"
+    reason: "Need wait https://github.com/Kong/kong-ee/pull/18754 to be merged and backported to next/3.15.x.x"
+    owner: "kally.shi@konghq.com"
+  
 
 skips:
   - name: "ai-semantic-cache"
