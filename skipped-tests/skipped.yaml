@@ -1,4 +1,31 @@
 skips_all_branches:
+  - name: "ai-proxy-advanced-load-balance"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "ai-proxy-advanced-chat-gemini-llama-upstream-url"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "ai-proxy-advanced-chat-gemini-llama-endpoint-id"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "status-endpoint"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "datakit"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "ai-proxy-advanced-anthropic-format"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "ai-proxy-advanced-native-format-files"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "ldap-advanced"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+  - name: "ai-gcp-model-armor"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
   - name: "ai-proxy-advanced-restful"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -17,32 +44,50 @@ skips_all_branches:
   - name: "ai-azure-content-safety"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "ai-proxy-advanced-claude-code"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
   - name: "ai-proxy-advanced-image"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
   - name: "ai-proxy-advanced-chat-reasoning-databricks"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "services"
-    reason: "Test skipped.yaml"
-    owner: "kally.shi@konghq.com"
-  - name: 'datakit'
-    reason: 'failing on master'
-    owner: 'alec.mestroni@konghq.com'
-  - name: 'ai-proxy-advanced-load-balance'
-    reason: 'failing on master e.g. https://github.com/Kong/kong-ee/actions/runs/26826538807/job/79101160083?pr=18762#step:34:213'
-    owner: 'hayk.sardaryan@konghq.com'
+  - name: "ai-proxy-advanced-chat-reasoning-gemini-public"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
 
 skips:
-  - name: "router"
-    reason: "Test skipped.yaml"
-    owner: "kally.shi@konghq.com"
+  - name: "ai-semantic-cache"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
     branches:
-      - "contrib/check-repo-skipped-tests"
-      - "contrib/check-repo"
+      - "18686/merge"
+      - "18685/merge"
+  - name: "ai-proxy-advanced-tools-use"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+    branches:
+      - "ai-next/2.0.x"
+      - "ai-2.0.0-rc.1"
+
+  - name: "ai-proxy-advanced-response"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+    branches:
+      - "ai-next/2.0.x"
+      - "ai-2.0.0-rc.1"
+
+  - name: "ai-proxy-advanced-chat-reasoning-test-suite"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+    branches:
+      - "ai-next/2.0.x"
+      - "ai-2.0.0-rc.1"
+
+  - name: "ai-proxy-advanced-chat-reasoning-gemini-public"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
+    branches:
+      - "ai-next/2.0.x"
+      - "ai-2.0.0-rc.1"
 
 reset_branches:
   - "fix/openai-compat-bedrock"
@@ -51,3 +96,10 @@ reset_branches:
   - "tests/claude-code"
   - "KAG-8847"
   - "backport-17907-to-next/3.14.x.x"
+  - "fix/ai-gcp-model-armor-flaky-test"
+  - "backport-17939-to-next-3.12.x.x"
+  - "AG-1061"
+  - "check/azure_aws_oidc"
+  - "AG-1101"
+  - "next/3.14.x.x"
+  - "AG-1104"
