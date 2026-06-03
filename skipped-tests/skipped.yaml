@@ -66,25 +66,21 @@ skips:
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
-      - "ai-2.0.0-rc.1"
   - name: "ai-proxy-advanced-response"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
-      - "ai-2.0.0-rc.1"
   - name: "ai-proxy-advanced-chat-reasoning-test-suite"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
-      - "ai-2.0.0-rc.1"
   - name: "ai-proxy-advanced-chat-reasoning-gemini-public"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
-      - "ai-2.0.0-rc.1"
 
 reset_branches:
   - "fix/openai-compat-bedrock"
