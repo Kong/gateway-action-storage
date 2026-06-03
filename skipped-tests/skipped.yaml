@@ -109,3 +109,4 @@ reset_branches:
   - "AG-1101"
   - "next/3.14.x.x"
   - "AG-1104"
+  - "contrib/otel-attributes-tests"
