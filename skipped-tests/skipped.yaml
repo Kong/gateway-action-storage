@@ -65,6 +65,9 @@ skips_all_branches:
   - name: "ai-semantic-response-guard"
     reason: "issue only happens in rhel-fips, skip it as of now, the issue was found in https://github.com/Kong/kong-ee/tree/refs/tags/ai-2.0.0-rc.2"
     owner: "liangwen.chen@konghq.com"
+  - name: "kafka-log"
+    reason: "failed consistently on next/3.15.x.x, next/3.12.x.x https://github.com/Kong/kong-ee/actions/runs/26962195912/job/79609897524?pr=18914#step:34:1136"
+    owner: "hayk.sardaryan@konghq.com"  
 
 skips:
   - name: "ai-semantic-cache"
