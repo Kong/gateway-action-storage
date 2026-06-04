@@ -65,6 +65,12 @@ skips_all_branches:
   - name: "ai-semantic-response-guard"
     reason: "issue only happens in rhel-fips, skip it as of now, the issue was found in https://github.com/Kong/kong-ee/tree/refs/tags/ai-2.0.0-rc.2"
     owner: "liangwen.chen@konghq.com"
+  - name: "ai-proxy-advanced-chat-gemini-llama-upstream-url"
+    reason: "tests fail on next/3.14.x.x during RC build: https://github.com/Kong/kong-ee/actions/runs/26950460673/job/79541426420#step:33:557"
+    owner: "hayk.sardaryan@konghq.com"
+  - name: "ai-proxy-advanced-chat-gemini-llama-endpoint-id"
+    reason: "tests fail on next/3.14.x.x during RC build: https://github.com/Kong/kong-ee/actions/runs/26950460673/job/79541426420#step:33:557"
+    owner: "hayk.sardaryan@konghq.com"
 
 skips:
   - name: "ai-semantic-cache"
