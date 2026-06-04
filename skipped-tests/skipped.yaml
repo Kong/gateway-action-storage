@@ -62,7 +62,9 @@ skips_all_branches:
   - name: "ai-a2a-opentelemetry-traces"
     reason: "Need wait https://github.com/Kong/kong-ee/pull/18754 to be merged and backported to next/3.15.x.x"
     owner: "kally.shi@konghq.com"
-  
+  - name: "ai-semantic-response-guard"
+    reason: "issue only happens in rhel-fips, skip it as of now, the issue was found in https://github.com/Kong/kong-ee/tree/refs/tags/ai-2.0.0-rc.2"
+    owner: "liangwen.chen@konghq.com"
 
 skips:
   - name: "ai-semantic-cache"
