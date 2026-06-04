@@ -110,4 +110,3 @@ reset_branches:
   - "next/3.14.x.x"
   - "AG-1104"
   - "contrib/otel-attributes-tests"
-  - "ai-master-kally"
