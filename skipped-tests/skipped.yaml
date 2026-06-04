@@ -73,6 +73,7 @@ skips:
     branches:
       - "18686/merge"
       - "18685/merge"
+      - "next/3.13.x.x"
   - name: "ai-proxy-advanced-tools-use"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
