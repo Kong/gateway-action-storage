@@ -67,16 +67,13 @@ skips_all_branches:
     owner: "liangwen.chen@konghq.com"
   - name: "kafka-log"
     reason: "failed consistently on next/3.15.x.x, next/3.12.x.x https://github.com/Kong/kong-ee/actions/runs/26962195912/job/79609897524?pr=18914#step:34:1136"
-    owner: "hayk.sardaryan@konghq.com"  
+    owner: "hayk.sardaryan@konghq.com"
+  - name: "ai-semantic-cache"
+    reason: "failed consistently across many branches https://github.com/Kong/kong-ee/actions/runs/26993515416/job/79722527284?pr=18940#step:31:1022"
+    owner: "hayk.sardaryan@konghq.com"
+  
 
 skips:
-  - name: "ai-semantic-cache"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "18686/merge"
-      - "18685/merge"
-      - "18772/merge"
   - name: "ai-proxy-advanced-tools-use"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
