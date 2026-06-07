@@ -108,3 +108,4 @@ reset_branches:
   - "AG-1104"
   - "contrib/otel-attributes-tests-ai-master"
   - "fix/status-endpoint"
+  - "ai-master-kally-2"
