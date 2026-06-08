@@ -2,7 +2,7 @@ skips_all_branches:
   - name: "ai-proxy-advanced-load-balance"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "status-endpoint"
+  - name: "opa"
     reason: "Flaky test"
     owner: "yiming.zhu@konghq.com"
   - name: "ai-proxy-advanced-chat-gemini-llama-upstream-url"
