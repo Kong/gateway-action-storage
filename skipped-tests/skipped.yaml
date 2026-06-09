@@ -95,5 +95,5 @@ reset_branches:
   - "AG-1101"
   - "AG-1104"
   - "contrib/otel-attributes-tests-ai-master"
-  - "fix/status-endpoint"
   - "AG-1101-ai-master"
+  - "fix/pki"
