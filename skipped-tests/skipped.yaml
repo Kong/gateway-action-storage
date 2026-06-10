@@ -39,7 +39,7 @@ skips_all_branches:
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
   - name: "ai-azure-content-safety"
-    reason: "Flaky test"
+    reason: "Bug found in ai-master branch, https://konghq.atlassian.net/browse/AG-1125"
     owner: "liangwen.chen@konghq.com"
   - name: "ai-proxy-advanced-image"
     reason: "Flaky test"
