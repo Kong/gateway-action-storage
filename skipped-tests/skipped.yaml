@@ -103,3 +103,4 @@ reset_branches:
   - "contrib/otel-attributes-tests-ai-master"
   - "AG-1101-ai-master"
   - "fix/pki"
+  - "fix/certs_reset"
