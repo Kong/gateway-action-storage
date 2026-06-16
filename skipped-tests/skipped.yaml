@@ -104,3 +104,4 @@ reset_branches:
   - "AG-1101-ai-master"
   - "fix/pki"
   - "fix/certs_reset"
+  - "next/3.15.x.x"
