@@ -64,6 +64,7 @@ skips:
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
+      - "19324/merge"
   - name: "ai-proxy-advanced-response"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
