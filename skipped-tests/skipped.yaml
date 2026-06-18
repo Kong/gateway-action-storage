@@ -60,11 +60,12 @@ skips_all_branches:
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
-    reason: "Flaky test"
+    reason: "404 (POST http://localhost:8000//ai_proxy_advanced_tools_use_spec/anthropic_claude-sonnet-4-20250514)"
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
       - "19324/merge"
+      - "19373/merge"
   - name: "ai-proxy-advanced-response"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
