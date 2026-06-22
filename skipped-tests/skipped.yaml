@@ -1,4 +1,7 @@
 skips_all_branches:
+  - name: "ai-proxy-advanced-tools-use"
+    reason: "model retirement, pending on Johnny's PR to be merged https://github.com/Kong/kong-ee/pull/18177"
+    owner: "liangwen.chen@konghq.com"
   - name: "ai-proxy-advanced-load-balance"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
