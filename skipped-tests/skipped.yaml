@@ -65,9 +65,7 @@ skips_all_branches:
   - name: "oidc-client-jwk"
     reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
     owner: "hai-yan.shi@konghq.com" 
-  - name: "oidc-client-jwk"
-    reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
-    owner: "hai-yan.shi@konghq.com" 
+
     
 skips:
   - name: "ai-proxy-advanced-tools-use"
@@ -106,3 +104,4 @@ reset_branches:
   - "AG-1104"
   - "contrib/otel-attributes-tests-ai-master"
   - "AG-1101-ai-master"
+  - "kally/jwk-tests"
