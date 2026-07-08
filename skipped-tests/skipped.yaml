@@ -65,7 +65,10 @@ skips_all_branches:
   - name: "oidc-client-jwk"
     reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
     owner: "hai-yan.shi@konghq.com" 
-  
+  - name: "oidc-client-jwk"
+    reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
+    owner: "hai-yan.shi@konghq.com" 
+    
 skips:
   - name: "ai-proxy-advanced-tools-use"
     reason: "404 (POST http://localhost:8000//ai_proxy_advanced_tools_use_spec/anthropic_claude-sonnet-4-20250514)"
