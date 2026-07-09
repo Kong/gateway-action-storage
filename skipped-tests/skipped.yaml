@@ -64,7 +64,7 @@ skips_all_branches:
     owner: "hayk.sardaryan@konghq.com"
   - name: "oidc-client-jwk"
     reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
-    owner: "hai-yan.shi@konghq.com" 
+    owner: "kally.shi@konghq.com" 
 
     
 skips:
