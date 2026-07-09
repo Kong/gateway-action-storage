@@ -108,4 +108,5 @@ reset_branches:
   - "kally/jwk-tests"
   - "backport-19723-to-next/3.14.x.x"
   - "backport-19723-to-next/3.13.x.x"
+  - "backport-19723-to-aigw-master"
 
