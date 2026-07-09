@@ -102,6 +102,5 @@ reset_branches:
   - "AG-1061"
   - "AG-1101"
   - "AG-1104"
-  - "contrib/otel-attributes-tests-ai-master"
   - "AG-1101-ai-master"
   - "kally/jwk-tests"
