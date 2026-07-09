@@ -65,6 +65,9 @@ skips_all_branches:
   - name: "oidc-client-jwk"
     reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
     owner: "kally.shi@konghq.com" 
+  - name: "oidc-userinfo"
+    reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
+    owner: "kally.shi@konghq.com" 
 
     
 skips:
