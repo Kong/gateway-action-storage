@@ -109,4 +109,7 @@ reset_branches:
   - "backport-19723-to-next/3.14.x.x"
   - "backport-19723-to-next/3.13.x.x"
   - "backport-19723-to-aigw-master"
-
+  - "backport-19723-to-next/3.12.x.x"
+  - "backport-19723-to-next/3.11.x.x"
+  - "backport-19723-to-next/3.10.x.x"
+  - "backport-19723-to-next/3.4.x.x"
