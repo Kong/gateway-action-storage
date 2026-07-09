@@ -107,4 +107,5 @@ reset_branches:
   - "AG-1101-ai-master"
   - "kally/jwk-tests"
   - "backport-19723-to-next/3.14.x.x"
+  - "backport-19723-to-next/3.13.x.x"
 
