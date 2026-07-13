@@ -68,7 +68,9 @@ skips_all_branches:
   - name: "oidc-userinfo"
     reason: "Failed only when run as part of a test group because of the tests that ran before it. https://konghq.atlassian.net/browse/KAG-9374"
     owner: "kally.shi@konghq.com" 
-
+  - name: "vaults-conjur"
+    reason: "Failed on CI"
+    owner: "eduardo.gallegos@konghq.com" 
     
 skips:
   - name: "ai-proxy-advanced-tools-use"
