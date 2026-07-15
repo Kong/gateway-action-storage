@@ -116,3 +116,4 @@ reset_branches:
   - "backport-19723-to-next/3.10.x.x"
   - "backport-19723-to-next/3.4.x.x"
   - "contrib/fix-keycloak-certs"
+  - "KAG-8556"
