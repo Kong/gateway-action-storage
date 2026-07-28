@@ -98,3 +98,4 @@ reset_branches:
   - "AG-1101"
   - "AG-1104"
   - "AG-1101-ai-master"
+  - "fix/azure-responses-api-version"
