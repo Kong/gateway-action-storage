@@ -62,7 +62,7 @@ skips_all_branches:
   - name: "ai-semantic-cache"
     reason: "failed consistently across many branches https://github.com/Kong/kong-ee/actions/runs/26993515416/job/79722527284?pr=18940#step:31:1022"
     owner: "hayk.sardaryan@konghq.com"
-    
+
 skips:
   - name: "ai-proxy-advanced-tools-use"
     reason: "404 (POST http://localhost:8000//ai_proxy_advanced_tools_use_spec/anthropic_claude-sonnet-4-20250514)"
@@ -85,7 +85,7 @@ skips:
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
     branches:
-      - "ai-next/2.0.x"    
+      - "ai-next/2.0.x"
 
 reset_branches:
   - "fix/openai-compat-bedrock"
@@ -99,3 +99,4 @@ reset_branches:
   - "AG-1104"
   - "AG-1101-ai-master"
   - "fix/azure-responses-api-version"
+  - "AG-1343-unskip-ai-proxy-advanced-anthropic-format"
