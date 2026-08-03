@@ -97,6 +97,8 @@ reset_branches:
   - "AG-1061"
   - "AG-1101"
   - "AG-1104"
+  - "backport-20741-to-master"
+  - "backport-20741-to-next/3.13.x.x"
   - "AG-1101-ai-master"
   - "fix/azure-responses-api-version"
   - "AG-1343-unskip-ai-proxy-advanced-anthropic-format"
