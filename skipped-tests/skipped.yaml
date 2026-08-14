@@ -39,7 +39,7 @@ skips_all_branches:
     reason: "Bug found in ai-master branch, https://konghq.atlassian.net/browse/AG-1125"
     owner: "liangwen.chen@konghq.com"
   - name: "ai-azure-content-safety-native"
-    reason: "Violent-content scenario fails consistently: Azure OpenAI's own content filter now intercepts the prompt before the plugin gets a chance to classify it, so the expected Violence/400 result is never reached. Started when kong-ee#21113 split/unskipped ai-azure-content-safety, whose old skip entry above no longer matches the new spec name."
+    reason: "Violent scenario fails consistently, Azure OpenAI's own filter blocks the prompt before the plugin classifies it. Broke when kong-ee#21113 renamed/split ai-azure-content-safety, orphaning the skip entry above."
     owner: "vincenzo.gasparo@konghq.com"
     note: "https://github.com/Kong/kong-ee/actions/runs/31779728151"
   - name: "ai-azure-content-safety-custom-guardrail"
