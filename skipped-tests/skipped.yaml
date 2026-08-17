@@ -62,6 +62,10 @@ skips_all_branches:
   - name: "ai-semantic-cache"
     reason: "failed consistently across many branches https://github.com/Kong/kong-ee/actions/runs/26993515416/job/79722527284?pr=18940#step:31:1022"
     owner: "hayk.sardaryan@konghq.com"
+  - name: "ai-guardrail-openai-llm-format-responses"
+    reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237"
+    owner: "liangwen.chen@konghq.com"
+      
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
