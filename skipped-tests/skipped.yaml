@@ -116,3 +116,5 @@ reset_branches:
   - "fix/azure-responses-api-version"
   - "fix/ag-1383"
   - "AG-1400-unskip-ai-proxy-advanced-realtime"
+  - "tests/aigw-master-unskip"
+  - "tests/next3.14.x.x-unskip"
