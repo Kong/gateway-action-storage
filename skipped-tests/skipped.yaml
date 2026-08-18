@@ -122,3 +122,4 @@ reset_branches:
   - "tests/aigw-master-unskip"
   - "feat/guardrail-tests"
   - "tests/next3.14.x.x-unskip"
+  - "AG-1479-azure-content-safety-fix-e2e-failures"
