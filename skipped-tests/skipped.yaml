@@ -74,6 +74,9 @@ skips_all_branches:
   - name: "ai-guardrail-gemini-llm-format"
     reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282"
     owner: "liangwen.chen@konghq.com"
+  - name: "ai-lakera-guard"
+    reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282"
+    owner: "liangwen.chen@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
