@@ -83,6 +83,9 @@ skips_all_branches:
   - name: "custom-metrics-pdk"
     reason: "Unstable test. Will enable it after fix it."
     owner: "kally.shi@konghq.com"
+  - name: "ai-proxy-advanced-anthropic-format"
+    reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
+    owner: "vincenzo.gasparo@konghq.com"
     
 skips:
   - name: "ai-proxy-advanced-tools-use"
