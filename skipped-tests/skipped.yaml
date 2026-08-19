@@ -63,7 +63,7 @@ skips_all_branches:
     reason: "failed consistently across many branches https://github.com/Kong/kong-ee/actions/runs/26993515416/job/79722527284?pr=18940#step:31:1022"
     owner: "hayk.sardaryan@konghq.com"
   - name: "ai-guardrail-openai-llm-format-responses"
-    reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282" 
+    reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282"
     owner: "liangwen.chen@konghq.com"
   - name: "ai-guardrail-openai-llm-format-chat"
     reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282"
@@ -86,7 +86,7 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-format"
     reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
     owner: "vincenzo.gasparo@konghq.com"
-    
+
 skips:
   - name: "ai-proxy-advanced-tools-use"
     reason: "404 (POST http://localhost:8000//ai_proxy_advanced_tools_use_spec/anthropic_claude-sonnet-4-20250514)"
@@ -130,3 +130,4 @@ reset_branches:
   - "tests/next3.14.x.x-unskip"
   - "AG-1479-azure-content-safety-fix-e2e-failures"
   - "test/flaky-tests-kally"
+  - "21356/merge"
