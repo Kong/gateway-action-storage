@@ -129,3 +129,4 @@ reset_branches:
   - "feat/guardrail-tests"
   - "tests/next3.14.x.x-unskip"
   - "AG-1479-azure-content-safety-fix-e2e-failures"
+  - "test/flaky-tests-kally"
