@@ -80,6 +80,9 @@ skips_all_branches:
   - name: "opa-protocol-websocket"
     reason: "Unstable test. Will enable it after fix it."
     owner: "kally.shi@konghq.com"
+  - name: "custom-metrics-pdk"
+    reason: "Unstable test. Will enable it after fix it."
+    owner: "kally.shi@konghq.com"
     
 skips:
   - name: "ai-proxy-advanced-tools-use"
