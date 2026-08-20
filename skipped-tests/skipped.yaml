@@ -131,3 +131,4 @@ reset_branches:
   - "AG-1479-azure-content-safety-fix-e2e-failures"
   - "test/flaky-tests-kally"
   - "21356/merge"
+  - "21114/merge"
