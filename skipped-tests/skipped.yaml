@@ -95,6 +95,9 @@ skips_all_branches:
   - name: "ai-llm-as-judge"
     reason: "AWS assume-role key deactivated in SEI-26 remediation, IAM role cases fail"
     owner: "yujuan.gu@konghq.com"
+  - name: "ai-a2a-proxy-upstream-authentication"
+    reason: "AWS assume-role key deactivated in SEI-26 remediation, IAM role cases fail"
+    owner: "yujuan.gu@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
