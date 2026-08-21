@@ -111,6 +111,14 @@ skips:
     branches:
       - "ai-next/2.0.x"
   - name: "ai-proxy-advanced-image-azure"
+    reason: "Gateway bug on next/3.12.x.x only https://konghq.atlassian.net/browse/AG-1533"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "AG-1533 - remove once #16624 is backported to next/3.12.x.x"
+    branches:
+      - "next/3.12.x.x"
+      - "backport-21114-to-next/3.12.x.x"
+      - "21494/merge"
+  - name: "ai-proxy-advanced-image-openai"
     reason: "Gateway bug on next/3.12.x.x only: https://konghq.atlassian.net/browse/AG-1533"
     owner: "vincenzo.gasparo@konghq.com"
     note: "AG-1533 - remove once #16624 is backported to next/3.12.x.x"
