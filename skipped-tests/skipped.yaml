@@ -44,9 +44,7 @@ skips_all_branches:
   - name: "ai-azure-content-safety-custom-guardrail"
     reason: "Same as ai-azure-content-safety-native above."
     owner: "vincenzo.gasparo@konghq.com"
-  - name: "ai-proxy-advanced-image"
-    reason: "Flaky test"
-    owner: "liangwen.chen@konghq.com"
+
   - name: "ai-proxy-advanced-chat-reasoning-databricks"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
