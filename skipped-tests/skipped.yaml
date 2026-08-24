@@ -138,3 +138,4 @@ reset_branches:
   - "tests/next3.14.x.x-unskip"
   - "test/flaky-tests-kally"
   - "21494/merge"
+  - "21391/merge"
