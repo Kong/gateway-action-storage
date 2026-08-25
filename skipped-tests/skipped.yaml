@@ -124,6 +124,12 @@ skips:
       - "next/3.12.x.x"
       - "backport-21114-to-next/3.12.x.x"
       - "21494/merge"
+  - name: "ai-guardrail-output-mode"
+    reason: "LLM illumination"
+    owner: "liangwen.chen@konghq.com"
+    branches:
+      - "fix/ag-1485"
+      - "aigw-master"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
