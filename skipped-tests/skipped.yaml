@@ -44,7 +44,6 @@ skips_all_branches:
   - name: "ai-azure-content-safety-custom-guardrail"
     reason: "Same as ai-azure-content-safety-native above."
     owner: "vincenzo.gasparo@konghq.com"
-
   - name: "ai-proxy-advanced-chat-reasoning-databricks"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -76,9 +75,6 @@ skips_all_branches:
     reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282"
     owner: "liangwen.chen@konghq.com"
   - name: "opa-protocol-websocket"
-    reason: "Unstable test. Will enable it after fix it."
-    owner: "kally.shi@konghq.com"
-  - name: "custom-metrics-pdk"
     reason: "Unstable test. Will enable it after fix it."
     owner: "kally.shi@konghq.com"
   - name: "ai-proxy-advanced-anthropic-format"
