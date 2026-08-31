@@ -5,7 +5,7 @@ skips_all_branches:
   - name: "ai-rag-injector-partials"
     reason: "bedrock model amazon.titan-embed-text-v2:0(embedding)+ cohere.command-r-plus-v1:0 offline"
     owner: "yujuan.gu@konghq.com"
-  - name: "	ai-proxy-advanced-partials"
+  - name: "ai-proxy-advanced-partials"
     reason: "bedrock model cohere.command-r-plus-v1:0 offline"
     owner: "yujuan.gu@konghq.com"  
   - name: "ai-semantic-prompt-guard-partials"
