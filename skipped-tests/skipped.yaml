@@ -8,7 +8,7 @@ skips_all_branches:
   - name: "ai-semantic-prompt-guard-partials"
     reason: "model offilne"
     owner: "yujuan.gu@konghq.com"
-  - name: "ai-semantic-prompt-guardt"
+  - name: "ai-semantic-prompt-guard"
     reason: "model offline"
     owner: "yujuan.gu@konghq.com"  
   - name: "ai-proxy-advanced-tools-use"
