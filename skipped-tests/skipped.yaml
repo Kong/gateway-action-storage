@@ -148,3 +148,4 @@ reset_branches:
   - "test/flaky-tests-kally"
   - "21494/merge"
   - "21391/merge"
+  - "fix-flaky-in-ai-guardrail-output-mode"
