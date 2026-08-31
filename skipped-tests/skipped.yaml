@@ -113,6 +113,11 @@ skips:
       - "ai-next/2.0.x"
       - "19324/merge"
       - "19373/merge"
+  - name: "ai-proxy-advanced-realtime-reasoning"
+    reason: "Gemini Live API does not consistently include thinking tokens in totalTokenCount; fixed on trunk by PR #21689 but aigw-2.0.3 is frozen without this fix"
+    owner: "jp.zhou@konghq.com"
+    branches:
+      - "aigw-2.0.3"    
   - name: "ai-proxy-advanced-response"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
