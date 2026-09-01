@@ -104,15 +104,6 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-format"
     reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
     owner: "vincenzo.gasparo@konghq.com"
-  - name: "metering-and-billing"
-    reason: "Something wrong with mistral subscription: https://github.com/Kong/kong-ee/actions/runs/33392324375/job/99580134702?pr=21645#step:12:909"
-    owner: "hayk.sardaryan@konghq.com"
-  - name: "ai-proxy-advanced-emb-native-format"
-    reason: "Something wrong with mistral subscription: https://github.com/Kong/kong-ee/actions/runs/33392324375/job/99580134702?pr=21645#step:12:909"
-    owner: "yiming.zhu@konghq.com"
-  - name: "ai-proxy-advanced-tools-use-mistral"
-    reason: "Something wrong with mistral subscription: https://github.com/Kong/kong-ee/actions/runs/33392324375/job/99580134702?pr=21645#step:12:909"
-    owner: "yiming.zhu@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
