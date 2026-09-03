@@ -157,6 +157,7 @@ skips:
       - "aigw-master"
 
 reset_branches:
+  - "fix/ai_otel"
   - "fix/unskip_gcp_armor"
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-953"
