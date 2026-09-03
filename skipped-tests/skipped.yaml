@@ -41,6 +41,9 @@ skips_all_branches:
   - name: "ai-proxy-advanced-native-format-files"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
+  - name: "ai-gcp-model-armor"
+    reason: "Flaky test"
+    owner: "jp.zhou@konghq.com"
   - name: "ai-proxy-advanced-restful"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -154,6 +157,7 @@ skips:
       - "aigw-master"
 
 reset_branches:
+  - "fix/unskip_gcp_armor"
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-953"
   - "tests/claude-code"
