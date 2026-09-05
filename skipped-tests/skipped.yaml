@@ -145,6 +145,7 @@ skips:
       - "aigw-master"
 
 reset_branches:
+  - "fix/unskip_otel"
   - "fix/ai_otel"
   - "fix/unskip_gcp_armor"
   - "tests/re-eval-skipped-at-runtime2"
