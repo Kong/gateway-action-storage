@@ -92,6 +92,9 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-format"
     reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
     owner: "vincenzo.gasparo@konghq.com"
+  - name: "otel-logs-custom-log-fields"
+    reason: "docker exec command failing on distroless fips https://github.com/Kong/kong-ee/actions/runs/34201036706/job/102086598642?pr=22039#step:13:1741"
+    owner: "anamica.kartik@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
@@ -143,9 +146,6 @@ skips:
     branches:
       - "fix/ag-1485"
       - "aigw-master"
-  - name: "otel-logs-custom-log-fields"
-    reason: "docker exec command failing on distroless fips https://github.com/Kong/kong-ee/actions/runs/34201036706/job/102086598642?pr=22039#step:13:1741"
-    owner: "anamica.kartik@konghq.com"
 
 reset_branches:
   - "fix/unskip_otel"
