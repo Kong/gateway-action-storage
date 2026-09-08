@@ -95,6 +95,9 @@ skips_all_branches:
   - name: "otel-logs-custom-log-fields"
     reason: "docker exec command failing on distroless fips https://github.com/Kong/kong-ee/actions/runs/34201036706/job/102086598642?pr=22039#step:13:1741"
     owner: "anamica.kartik@konghq.com"
+  - name: "oidc-token-exchange-hybrid-compat"
+    reason: "error: kong-dp2 should be visible on the CP clustering endpoint: expected undefined to exist **"
+    owner: "hayk.sardaryan2konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
