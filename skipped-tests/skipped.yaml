@@ -97,7 +97,7 @@ skips_all_branches:
     owner: "anamica.kartik@konghq.com"
   - name: "oidc-token-exchange-hybrid-compat"
     reason: "error: kong-dp2 should be visible on the CP clustering endpoint: expected undefined to exist **"
-    owner: "hayk.sardaryan2konghq.com"
+    owner: "hayk.sardaryan@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
