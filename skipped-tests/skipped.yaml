@@ -98,6 +98,9 @@ skips_all_branches:
   - name: "oidc-token-exchange-hybrid-compat"
     reason: "error: kong-dp2 should be visible on the CP clustering endpoint: expected undefined to exist **"
     owner: "hayk.sardaryan@konghq.com"
+  - name: "oidc-actor-token.spec.ts"
+    reason: "Flaky test -> https://github.com/Kong/kong-ee/actions/runs/34321934062/job/102371722077?pr=22105#step:13:13396"
+    owner: "anamica.kartik@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
