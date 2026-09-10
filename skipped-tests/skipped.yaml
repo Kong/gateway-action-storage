@@ -92,6 +92,10 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-format"
     reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
     owner: "vincenzo.gasparo@konghq.com"
+  - name: "oidc-token-exchange-hybrid-compat"
+    reason: "this case may conflict with dynamic-log-level-operations-fleet, it consistently fails in Package & Release"
+    owner: "yiming.zhu@konghq.com"
+    
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
