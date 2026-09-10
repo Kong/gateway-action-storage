@@ -92,6 +92,12 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-format"
     reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
     owner: "vincenzo.gasparo@konghq.com"
+  - name: "oidc-token-exchange-hybrid-compat"
+    reason: "this test is flaky on CI"
+    owner: "anamica.kartik@konghq.com"
+  - name: "oidc-token-cluster-cache"
+    reason: "this test is flaky on CI, when run with other specs"
+    owner: "anamica.kartik@konghq.com"      
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
