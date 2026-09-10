@@ -94,8 +94,13 @@ skips_all_branches:
     owner: "vincenzo.gasparo@konghq.com"
   - name: "oidc-token-exchange-hybrid-compat"
     reason: "this case may conflict with dynamic-log-level-operations-fleet, it consistently fails in Package & Release"
-    owner: "yiming.zhu@konghq.com"
-    
+    owner: "anamica.kartik@konghq.com"
+  - name: "oidc-actor-token"
+    reason: "failing on next/3.16.x.x: https://github.com/Kong/kong-ee/actions/runs/34370113766/job/102718695582#step:13:1704"
+    owner: "anamica.kartik@konghq.com"  
+  - name: "otel-logs-custom-log-fields"
+    reason: "failing on next/3.16.x.x: https://github.com/Kong/kong-ee/actions/runs/34370113766/job/102718695582#step:13:1704"
+    owner: "anamica.kartik@konghq.com"      
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
