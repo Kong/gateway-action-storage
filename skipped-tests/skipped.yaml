@@ -94,10 +94,7 @@ skips_all_branches:
     owner: "vincenzo.gasparo@konghq.com"
   - name: "oidc-token-exchange-hybrid-compat"
     reason: "this test is flaky on CI"
-    owner: "anamica.kartik@konghq.com"
-  - name: "oidc-token-cluster-cache"
-    reason: "this test is flaky on CI, when run with other specs"
-    owner: "anamica.kartik@konghq.com"      
+    owner: "anamica.kartik@konghq.com"   
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
