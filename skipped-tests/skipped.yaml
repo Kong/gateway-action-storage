@@ -168,3 +168,4 @@ reset_branches:
   - "21494/merge"
   - "21391/merge"
   - "fix-flaky-in-ai-guardrail-output-mode"
+  - "tests/organize-specs-by-plugin"
