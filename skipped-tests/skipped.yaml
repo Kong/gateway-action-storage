@@ -32,9 +32,6 @@ skips_all_branches:
   - name: "ai-proxy-advanced-realtime"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "ai-otel-metrics"
-    reason: "Flaky test"
-    owner: "liangwen.chen@konghq.com"
   - name: "app-dynamics"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -147,10 +144,5 @@ skips:
       - "aigw-master"
 
 reset_branches:
-  - "backport-21897-to-master"
-  - "22304/merge"
-  - "22305/merge"
-  - "22306/merge"
-  - "22307/merge"
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
