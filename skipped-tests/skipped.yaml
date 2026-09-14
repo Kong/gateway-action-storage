@@ -149,6 +149,9 @@ skips:
 reset_branches:
   - "backport-21897-to-master"
   - "22304/merge"
+  - "22305/merge"
+  - "22306/merge"
+  - "22307/merge"
   - "fix/unskip_otel"
   - "fix/ai_otel"
   - "tests/re-eval-skipped-at-runtime2"
