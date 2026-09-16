@@ -91,9 +91,6 @@ skips_all_branches:
     owner: "zhao-kun.li@konghq.com"
   - name: "ai-proxy-advanced-emb"
     reason: "huggingface down temporarily. ProviderApiError: Failed to perform inference: Internal Error - We're working hard to fix this as soon as possible!"
-    owner: "zhao-kun.li@konghq.com"  
-  - name: "ai-otel-openinference"
-    reason: "huggingface down temporarily. ProviderApiError: Failed to perform inference: Internal Error - We're working hard to fix this as soon as possible!"
     owner: "zhao-kun.li@konghq.com"
 
 skips:
