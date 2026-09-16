@@ -86,6 +86,15 @@ skips_all_branches:
   - name: "ai-gcp-model-armor"
     reason: "streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713"
     owner: "vincenzo.gasparo@konghq.com"
+  - name: "ai-proxy-advanced-prompt-decorator"
+    reason: "huggingface down temporarily. ProviderApiError: Failed to perform inference: Internal Error - We're working hard to fix this as soon as possible!"
+    owner: "zhao-kun.li@konghq.com"
+  - name: "ai-proxy-advanced-emb"
+    reason: "huggingface down temporarily. ProviderApiError: Failed to perform inference: Internal Error - We're working hard to fix this as soon as possible!"
+    owner: "zhao-kun.li@konghq.com"  
+  - name: "ai-otel-openinference"
+    reason: "huggingface down temporarily. ProviderApiError: Failed to perform inference: Internal Error - We're working hard to fix this as soon as possible!"
+    owner: "zhao-kun.li@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
