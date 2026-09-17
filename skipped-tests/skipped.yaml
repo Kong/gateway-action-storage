@@ -95,7 +95,10 @@ skips_all_branches:
   - name: "ai-proxy-advanced-emb"
     reason: "huggingface down temporarily. ProviderApiError: Failed to perform inference: Internal Error - We're working hard to fix this as soon as possible!"
     owner: "zhao-kun.li@konghq.com"
-
+  - name: "ai-proxy-advanced-restful-azure"
+    reason: "azure request fails with background true format. Message: The server had an error while processing your request. Sorry about that"
+    owner: "yi.jin@konghq.com"
+ 
 skips:
   - name: "ai-proxy-advanced-tools-use"
     reason: "404 (POST http://localhost:8000//ai_proxy_advanced_tools_use_spec/anthropic_claude-sonnet-4-20250514)"
