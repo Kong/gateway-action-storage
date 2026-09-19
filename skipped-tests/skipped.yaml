@@ -148,6 +148,5 @@ skips:
       - "aigw-master"
 
 reset_branches:
-  - "test/aigw-master/fix-flaky-ai-mcp-proxy-konnect-telemetry"
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
