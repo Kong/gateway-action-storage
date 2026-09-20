@@ -113,11 +113,6 @@ skips:
     owner: "jp.zhou@konghq.com"
     branches:
       - "ai-next/2.0.x"
-  - name: "ai-proxy-advanced-chat-reasoning-gemini-public"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "ai-next/2.0.x"
   - name: "ai-proxy-advanced-image-azure"
     reason: "Gateway bug on next/3.12.x.x only https://konghq.atlassian.net/browse/AG-1533"
     owner: "vincenzo.gasparo@konghq.com"
