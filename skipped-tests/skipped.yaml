@@ -77,15 +77,9 @@ skips_all_branches:
   - name: "opa-protocol-websocket" 
     reason: "Unstable test. Will enable it after fix it."
     owner: "kally.shi@konghq.com"
-  - name: "ai-proxy-advanced-anthropic-format"
-    reason: "Model zai-glm-4.7 is archived and unavailable for the organization."
-    owner: "vincenzo.gasparo@konghq.com"
   - name: "ai-gcp-model-armor"
     reason: "streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713"
     owner: "vincenzo.gasparo@konghq.com"
-  - name: "ai-proxy-advanced-restful-azure"
-    reason: "azure request fails with background true format. Message: The server had an error while processing your request. Sorry about that"
-    owner: "yi.jin@konghq.com"
  
 skips:
   - name: "ai-proxy-advanced-tools-use"
