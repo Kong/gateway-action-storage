@@ -77,9 +77,6 @@ skips_all_branches:
   - name: "ai-gcp-model-armor"
     reason: "streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713"
     owner: "vincenzo.gasparo@konghq.com"
-  - name: "opa-protocol-websocket" 
-    reason: "Unstable test. Will enable it after fix it."
-    owner: "kally.shi@konghq.com"
  
 skips:
   - name: "ai-proxy-advanced-tools-use"
