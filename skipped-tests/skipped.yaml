@@ -72,6 +72,10 @@ skips_all_branches:
   - name: "opa-protocol-websocket" 
     reason: "Unstable test. Will enable it after fix it."
     owner: "kally.shi@konghq.com"
+  - name: "ai-proxy-advanced-restful-gemini-vertex"
+    reason: "Gemini Vertex batchPredictionJobs sit in JOB_STATE_PENDING in the gcp-sdet-test project: the cancel returns 200 but the state never becomes terminal, so the batches delete step is rejected by GCP with 400 FAILED_PRECONDITION. Same condition kong-ee PR #22730 worked around for the native-format spec"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "un-skip once Vertex batch jobs settle again; the spec skips its own delete step while the job stays PENDING"
  
 skips:
   - name: "ai-proxy-advanced-tools-use"
