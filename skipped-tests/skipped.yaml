@@ -128,3 +128,4 @@ reset_branches:
   - "AG-1101-ai-master"
   - "refs/pull/22651/merge"
   - "22783/merge"
+  - "contrib/enable-websocket-tests"
