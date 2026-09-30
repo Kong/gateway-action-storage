@@ -127,3 +127,4 @@ reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
   - "refs/pull/22651/merge"
+  - "22783/merge"
