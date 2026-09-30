@@ -69,14 +69,14 @@ skips_all_branches:
     reason: "streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713. Buffered OUTPUT prompt-injection blocking never fires either: https://konghq.atlassian.net/browse/AG-1798"
     owner: "vincenzo.gasparo@konghq.com"
     note: "AG-1713 and AG-1798 - un-skip once both are fixed"
-  - name: "opa-protocol-websocket" 
+  - name: "opa-protocol-websocket"
     reason: "Unstable test. Will enable it after fix it."
     owner: "kally.shi@konghq.com"
   - name: "ai-proxy-advanced-restful-gemini-vertex"
     reason: "Gemini Vertex batchPredictionJobs sit in JOB_STATE_PENDING in the gcp-sdet-test project: the cancel returns 200 but the state never becomes terminal, so the batches delete step is rejected by GCP with 400 FAILED_PRECONDITION. Same condition kong-ee PR #22730 worked around for the native-format spec"
     owner: "vincenzo.gasparo@konghq.com"
     note: "un-skip once Vertex batch jobs settle again; the spec skips its own delete step while the job stays PENDING"
- 
+
 skips:
   - name: "ai-proxy-advanced-tools-use"
     reason: "404 (POST http://localhost:8000//ai_proxy_advanced_tools_use_spec/anthropic_claude-sonnet-4-20250514)"
@@ -129,3 +129,5 @@ reset_branches:
   - "refs/pull/22651/merge"
   - "22783/merge"
   - "contrib/enable-websocket-tests"
+  - "fix-gcp-model-armor-output-text-extraction"
+  - "refs/pull/22783/merge"
