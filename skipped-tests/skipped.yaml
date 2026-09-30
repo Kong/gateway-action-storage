@@ -76,6 +76,14 @@ skips_all_branches:
     reason: "Gemini Vertex batchPredictionJobs sit in JOB_STATE_PENDING in the gcp-sdet-test project: the cancel returns 200 but the state never becomes terminal, so the batches delete step is rejected by GCP with 400 FAILED_PRECONDITION. Same condition kong-ee PR #22730 worked around for the native-format spec"
     owner: "vincenzo.gasparo@konghq.com"
     note: "un-skip once Vertex batch jobs settle again; the spec skips its own delete step while the job stays PENDING"
+  - name: "ai-proxy-advanced-anthropic-streaming"
+    reason: "bedrock target (global.anthropic.claude-sonnet-5) streams a `thinking` content block first, so the spec's assertion that the first content_block_start is `text` fails: https://github.com/Kong/kong-ee/actions/runs/36690746674"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "un-skip once the spec tolerates a leading thinking block on models that reason by default"
+  - name: "ai-proxy-advanced-chat-reasoning-gemini-vertex"
+    reason: "gemini-vertex (gemini-3-flash-preview) returns 400 on replayed function-call history, 'function call `get_weather` in the 2. content block is missing a `thought_signature`', failing the tool-call follow-up and sequential multi-tool-call tests: https://github.com/Kong/kong-ee/actions/runs/36690746674"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "un-skip once the gemini-vertex path attaches a thought_signature to function calls it replays"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
