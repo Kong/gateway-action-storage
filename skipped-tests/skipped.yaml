@@ -84,6 +84,15 @@ skips_all_branches:
     reason: "gemini-vertex (gemini-3-flash-preview) returns 400 on replayed function-call history, 'function call `get_weather` in the 2. content block is missing a `thought_signature`', failing the tool-call follow-up and sequential multi-tool-call tests: https://github.com/Kong/kong-ee/actions/runs/36690746674"
     owner: "vincenzo.gasparo@konghq.com"
     note: "un-skip once the gemini-vertex path attaches a thought_signature to function calls it replays"
+  - name: "ai-rag-injector-filter"
+    reason: "before all hook times out after 180000ms (pgvector/valkey container setup)"
+    owner: "vincenzo.gasparo@konghq.com"
+  - name: "ai-rag-injector-proxy"
+    reason: "before all hook times out after 180000ms (pgvector container setup)"
+    owner: "vincenzo.gasparo@konghq.com"
+  - name: "ai-rag-injector-proxy-otel-metrics"
+    reason: "before all hook times out after 180000ms (pgvector container setup)"
+    owner: "vincenzo.gasparo@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-tools-use"
