@@ -139,3 +139,4 @@ reset_branches:
   - "contrib/enable-websocket-tests"
   - "fix-gcp-model-armor-output-text-extraction"
   - "refs/pull/22783/merge"
+  - "test/flaky-tests-kally"
