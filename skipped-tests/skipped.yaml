@@ -131,9 +131,7 @@ skips:
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
-  - "refs/pull/22651/merge"
   - "22783/merge"
-  - "contrib/enable-websocket-tests"
   - "fix-gcp-model-armor-output-text-extraction"
   - "refs/pull/22783/merge"
   - "test/flaky-tests-kally"
