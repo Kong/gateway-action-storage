@@ -25,8 +25,10 @@ It holds two independent data sets:
 | `skipped-tests/schema.json` | JSON Schema (draft-07) for `skipped.yaml`, enforced by `validate.js`. |
 | `skipped-tests/tools/validate.js` | Schema check plus duplicate-name and duplicate-`reset_branches` checks. |
 | `skipped-tests/tools/generate.js` | Renders the compact skip string consumed by CI. Prints to stdout only. |
+| `skipped-tests/tools/report.js` | Renders a Slack digest of current skips, with per-entry age from git history. Prints to stdout only. |
 | `.githooks/pre-commit` | Fast local checks, runs only when `skipped.yaml` is staged. |
 | `.github/workflows/validate-skipped-tests.yml` | CI validation on any push touching `skipped-tests/**`. |
+| `.github/workflows/slack-skip-digest.yml` | Weekly Monday cron posting the skip digest to Slack. Manual dispatch defaults to dry-run. |
 | `.ci/runtimes*.json` | Generated test-duration indexes, one variant per CI job/suite. |
 | `README.md` | Human-facing summary of the skip flow and YAML format. |
 
@@ -119,6 +121,19 @@ Populated by an automated job (commit messages look like
 `npm run validate`, then runs `npm run generate` and fails if the output does
 not match the format above. It does not check `.ci/**`.
 
+## Slack digest
+
+`.github/workflows/slack-skip-digest.yml` runs on Monday mornings (Beijing
+time) and posts `npm run report` output to Slack. It needs the `SLACK_BOT_TOKEN`
+secret (a Bot User OAuth Token, `xoxb-…`, with `chat:write`; the bot must be a
+member of the channel or the app needs `chat:write.public`) and the
+`SLACK_CHANNEL` variable. `report.js` derives each entry's age from the git
+history of `skipped.yaml` (first commit containing it in its section), so the
+workflow needs full history (`fetch-depth: 0`). Entries are tagged 🆕 when
+added within 7 days and ⚠️ when older than 21 days; the message `<!here>`s only
+when at least one entry is new or stale. Manual dispatch defaults to dry-run,
+which prints the message to the step summary instead of posting. Test changes
+locally with `npm run report` from `skipped-tests/tools`.
 ## Notes for consumer repos
 
 If you are an agent working in a gateway repo that consumes this one:
