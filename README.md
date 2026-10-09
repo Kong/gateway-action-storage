@@ -70,3 +70,20 @@ This is required for:
 
 - validate.js
 - generate.js
+- report.js
+
+## Skip Digest Bot
+
+A scheduled workflow (`.github/workflows/slack-skip-digest.yml`) posts a weekly
+(Monday) summary of the current skip list to Slack: one line per entry
+(`name — owner — age`, branch-specific entries also list their branches),
+sorted oldest first, and `<!here>` pings only when there are new or
+stale (21+ days) skips. It requires the `SLACK_BOT_TOKEN` secret
+(bot token with `chat:write`) and the `SLACK_CHANNEL` variable on the repo.
+
+Preview the message locally without posting:
+
+```bash
+cd skipped-tests/tools
+npm run report
+```

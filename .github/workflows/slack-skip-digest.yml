@@ -1,0 +1,67 @@
+name: Skipped Tests Slack Digest
+
+on:
+  schedule:
+    # Mondays 01:30 UTC = 09:30 Beijing
+    - cron: "30 1 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print the message to the summary instead of posting to Slack"
+        type: boolean
+        default: true
+
+permissions: {}
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: skipped-tests/tools/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: skipped-tests/tools
+
+      - name: Build digest message
+        run: npm run --silent report > "$GITHUB_WORKSPACE/digest.json"
+        working-directory: skipped-tests/tools
+
+      - name: Preview digest
+        if: ${{ inputs.dry_run }}
+        run: |
+          jq -r '.blocks[]
+            | if .type == "header" then "== " + .text.text
+            elif .type == "divider" then "─────────────"
+            elif .type == "section" then .text.text
+            elif .type == "context" then (.elements | map(.text // "?") | join(" "))
+            else tojson end' "$GITHUB_WORKSPACE/digest.json" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Post to Slack
+        if: ${{ !inputs.dry_run }}
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL: ${{ vars.SLACK_CHANNEL }}
+        run: |
+          set -euo pipefail
+
+          [ -n "$SLACK_BOT_TOKEN" ] || { echo "::error title=Missing secret::SLACK_BOT_TOKEN is not configured"; exit 1; }
+          [ -n "$SLACK_CHANNEL" ] || { echo "::error title=Missing variable::SLACK_CHANNEL is not configured"; exit 1; }
+
+          resp=$(curl -s -X POST https://slack.com/api/chat.postMessage \
+            -H "Authorization: Bearer $SLACK_BOT_TOKEN" \
+            -H 'Content-Type: application/json; charset=utf-8' \
+            --data "$(jq -n --arg c "$SLACK_CHANNEL" --slurpfile d digest.json '{channel:$c, text:$d[0].text, blocks:$d[0].blocks}')")
+
+          if [ "$(echo "$resp" | jq -r '.ok // false')" != "true" ]; then
+            echo "::error title=Slack post failed::$(echo "$resp" | jq -r '.error // "unknown"')"
+            exit 1
+          fi
