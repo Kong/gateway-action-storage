@@ -133,3 +133,4 @@ reset_branches:
   - "AG-1101-ai-master"
   - "fix-gcp-model-armor-output-text-extraction"
   - "23179/merge"
+  - "test/fix-flaky-opa-protocol-websocket"
