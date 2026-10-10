@@ -132,3 +132,4 @@ reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
   - "fix-gcp-model-armor-output-text-extraction"
+  - "refs/pull/23179/merge"
