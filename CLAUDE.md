@@ -128,8 +128,10 @@ time) and posts `npm run report` output to Slack. It needs the `SLACK_BOT_TOKEN`
 secret (a Bot User OAuth Token, `xoxb-…`, with `chat:write`; the bot must be a
 member of the channel or the app needs `chat:write.public`) and the
 `SLACK_CHANNEL` variable. `report.js` derives each entry's age from the git
-history of `skipped.yaml` (first commit containing it in its section), so the
-workflow needs full history (`fetch-depth: 0`). Entries are tagged 🆕 when
+history of `skipped.yaml` (the most recent commit that introduced the entry to
+its section, so an entry that is unskipped and later re-skipped has its age
+reset to the re-skip date), so the workflow needs full history
+(`fetch-depth: 0`). Entries are tagged 🆕 when
 added within 7 days and ⚠️ when older than 21 days; the message `<!here>`s only
 when at least one entry is new or stale. Manual dispatch defaults to dry-run,
 which prints the message to the step summary instead of posting. Test changes

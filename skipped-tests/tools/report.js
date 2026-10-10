@@ -11,7 +11,7 @@ const STALE_DAYS = 21;
 
 const data = yaml.load(fs.readFileSync(path.join(REPO, FILE), "utf8")) ?? {};
 
-function firstSeenTimestamps() {
+function lastAddedTimestamps() {
   let commits;
   try {
     commits = execFileSync(
@@ -30,7 +30,8 @@ function firstSeenTimestamps() {
     return {};
   }
 
-  const firstSeen = {};
+  const lastAdded = {};
+  let present = new Set();
   for (const { sha, ts } of commits) {
     let doc;
     try {
@@ -44,22 +45,27 @@ function firstSeenTimestamps() {
     } catch {
       continue;
     }
-    if (!doc || typeof doc !== "object") continue;
-    for (const section of ["skips_all_branches", "skips"]) {
-      for (const entry of doc[section] ?? []) {
-        const key = `${section}:${entry.name}`;
-        if (!(key in firstSeen)) firstSeen[key] = ts;
+    const entries = new Set();
+    if (doc && typeof doc === "object") {
+      for (const section of ["skips_all_branches", "skips"]) {
+        for (const entry of doc[section] ?? []) {
+          entries.add(`${section}:${entry.name}`);
+        }
       }
     }
+    for (const key of entries) {
+      if (!present.has(key)) lastAdded[key] = ts;
+    }
+    present = entries;
   }
-  return firstSeen;
+  return lastAdded;
 }
 
-const firstSeen = firstSeenTimestamps();
+const lastAdded = lastAddedTimestamps();
 
 function withAge(section, entries) {
   return entries.map((entry) => {
-    const ts = firstSeen[`${section}:${entry.name}`];
+    const ts = lastAdded[`${section}:${entry.name}`];
     const days = ts == null ? null : Math.floor((Date.now() - ts) / 86400000);
     return { ...entry, section, addedDays: days };
   });
