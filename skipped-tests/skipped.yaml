@@ -131,3 +131,4 @@ reset_branches:
   - "fix-gcp-model-armor-output-text-extraction"
   - "23179/merge"
   - "test/fix-flaky-opa-protocol-websocket"
+  - "test/unskip-ai-proxy-advanced-tools-use"
