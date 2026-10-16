@@ -103,6 +103,14 @@ skips_all_branches:
     reason: "Same condition as the Anthropic chat entry, on the Bedrock inference profile"
     owner: "vincenzo.gasparo@konghq.com"
     note: "un-skip once Kong asks for the summarized thinking on the reasoning path"
+  - name: "ai-proxy-advanced-video"
+    reason: "Bedrock retired amazon.nova-reel-v1:0, the model bedrock-amazon.video.medium holds (404 end of life): https://github.com/Kong/kong-ee/actions/runs/38903337220"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "un-skip once that key points at a live video model and the spec is adapted to it"
+  - name: "ai-proxy-advanced-native-format-video"
+    reason: "Same retired Bedrock video model as ai-proxy-advanced-video"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "un-skip with that entry"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
