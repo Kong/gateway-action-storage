@@ -125,6 +125,8 @@ reset_branches:
   - "test/next-3.16.x.x/fix-flaky-ai-semantic-response-guard"
   - "23430/merge"
   - "23431/merge"
+  - "test/master/ai-guardrails-llm-format-stabilization"
+  - "23452/merge"
   - "backport-23428-to-master"
   - "backport-23428-to-next/3.14.x.x"
   - "backport-23428-to-next/3.15.x.x"
