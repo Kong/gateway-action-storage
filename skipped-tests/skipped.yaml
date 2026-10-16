@@ -151,7 +151,5 @@ reset_branches:
   - "23431/merge"
   - "test/master/ai-guardrails-llm-format-stabilization"
   - "23452/merge"
-  - "backport-23428-to-master"
-  - "backport-23428-to-next/3.14.x.x"
-  - "backport-23428-to-next/3.15.x.x"
-  - "backport-23428-to-next/3.16.x.x"
+  - "23436/merge"
+
