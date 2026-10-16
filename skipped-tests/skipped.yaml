@@ -123,3 +123,5 @@ reset_branches:
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "test/next-3.14.x.x/fix-flaky-ai-guardrail-openai-llm-format-responses"
   - "test/next-3.16.x.x/fix-flaky-ai-semantic-response-guard"
+  - "23430/merge"
+  - "23431/merge"
