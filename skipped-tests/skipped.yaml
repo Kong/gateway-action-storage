@@ -121,3 +121,5 @@ reset_branches:
   - "fix-gcp-model-armor-output-text-extraction"
   - "23179/merge"
   - "test/unskip-ai-proxy-advanced-tools-use"
+  - "test/next-3.14.x.x/fix-flaky-ai-guardrail-openai-llm-format-responses"
+  - "test/next-3.16.x.x/fix-flaky-ai-semantic-response-guard"
