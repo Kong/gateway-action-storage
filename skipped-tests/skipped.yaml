@@ -145,8 +145,6 @@ reset_branches:
   - "fix-gcp-model-armor-output-text-extraction"
   - "23179/merge"
   - "test/unskip-ai-proxy-advanced-tools-use"
-  - "test/next-3.16.x.x/fix-flaky-ai-semantic-response-guard"
-  - "23431/merge"
   - "23436/merge"
   - "23437/merge"
   - "23435/merge"
