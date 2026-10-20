@@ -91,6 +91,10 @@ skips_all_branches:
     reason: "Same retired Bedrock video model as ai-proxy-advanced-video"
     owner: "vincenzo.gasparo@konghq.com"
     note: "un-skip with that entry"
+  - name: "ai-proxy-token-refresh-azure"
+    reason: "Azure token refresh failure throws 500 instead of 401 after fix FTI-7671"
+    owner: "zhaokun.li@konghq.com"
+    note: "un-skip after updating the test scenario accepting both of 401 and 500 error"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
