@@ -134,5 +134,6 @@ reset_branches:
   - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "test/master/fix-flaky-ai-proxy-token-refresh-azure"
+  - "23563/merge"
 
 
