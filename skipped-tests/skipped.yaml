@@ -133,7 +133,7 @@ reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
-  - "test/master/fix-flaky-ai-proxy-token-refresh-azure"
-  - "23563/merge"
+  - "backport-23563-to-next/3.16.x.x"
+  - "23580/merge"
 
 
