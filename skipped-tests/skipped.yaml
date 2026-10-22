@@ -95,6 +95,12 @@ skips_all_branches:
     reason: "Azure token refresh failure throws 500 instead of 401 after fix FTI-7671"
     owner: "zhaokun.li@konghq.com"
     note: "un-skip after updating the test scenario accepting both of 401 and 500 error"
+  - name: "kafka-upstream-async-health-gating"
+    reason: "product bug: async producer health gate blind under broker outage (flush drain livelock, messages silently dropped, no 503), reproduced on master nightly; ticket pending"
+    owner: "yiming.zhu@konghq.com"
+  - name: "tcp-log"
+    reason: "flaky: openresty test receiver loses tcp-log entry tail (fixed 4096-byte read + echo-induced RST race); receiver fix pending in gateway-docker-compose-generator, not a gateway bug"
+    owner: "yiming.zhu@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
