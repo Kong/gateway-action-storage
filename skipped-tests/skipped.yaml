@@ -101,6 +101,9 @@ skips_all_branches:
   - name: "tcp-log"
     reason: "flaky: openresty test receiver loses tcp-log entry tail (fixed 4096-byte read + echo-induced RST race); receiver fix pending in gateway-docker-compose-generator, not a gateway bug"
     owner: "yiming.zhu@konghq.com"
+  - name: "ai-nvidia-nemo-guardrail"
+    reason: "Too Many Requests: https://github.com/Kong/kong-ee/actions/runs/40070859795/job/120808141700?pr=23552"
+    owner: "yiming.zhu@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
