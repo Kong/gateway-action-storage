@@ -107,6 +107,9 @@ skips_all_branches:
   - name: "ai-proxy-advanced-chat-reasoning-databricks"
     reason: "databricks behavior changed. AG-2105"
     owner: "yi.jin@konghq.com"
+  - name: "ai-proxy-advanced-anthropic-reasoning-gemini-vertex-passthrough"
+    reason: "vertex supports output_config. AG-2107"
+    owner: "yi.jin@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
