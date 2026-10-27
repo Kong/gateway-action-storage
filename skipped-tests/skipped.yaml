@@ -110,6 +110,10 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-reasoning-gemini-vertex-passthrough"
     reason: "vertex supports output_config. AG-2107"
     owner: "yi.jin@konghq.com"
+  - name: "ai-otel"
+    reason: "model gpt-4.1-nano is deprecated. AG-2115"
+    owner: "liangwen.chen@konghq.com"
+    
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
