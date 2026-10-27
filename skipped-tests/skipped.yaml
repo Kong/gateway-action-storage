@@ -147,13 +147,6 @@ skips:
       - "next/3.12.x.x"
       - "backport-21114-to-next/3.12.x.x"
       - "21494/merge"
-  - name: "ai-proxy-advanced-restful-azure"
-    reason: "Expected failure on the 3.14.0.17 CVE release PR: the 3.14 backport of #19230 (#19269) has no azure.lua routing for azure_api_version=preview, so Azure Responses calls fail. The fix (#20905) is not a CVE fix and is not in this release."
-    owner: "meng.wang@konghq.com"
-    note: "Remove after 3.14.0.17 is released."
-    branches:
-      - "23824/merge"
-      - "release/3.14.0.17"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
