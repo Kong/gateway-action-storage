@@ -110,7 +110,9 @@ skips_all_branches:
   - name: "ai-proxy-advanced-anthropic-reasoning-gemini-vertex-passthrough"
     reason: "vertex supports output_config. AG-2107"
     owner: "yi.jin@konghq.com"
-    
+  - name: "routes-protocol-grpc"
+    reason: "Needs update error message because of images updated"
+    owner: "kally.shi@konghq.com"   
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
