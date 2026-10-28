@@ -107,7 +107,7 @@ skips_all_branches:
   - name: "ai-proxy-advanced-chat-reasoning-databricks"
     reason: "databricks behavior changed. AG-2105"
     owner: "yi.jin@konghq.com"
-  - name: "ai-proxy-advanced-cost-tag"
+  - name: "ai-proxy-advanced-cost-tags"
     reason: "should have @ai tag in top-level describe"
     owner: "zhaokun.li@konghq.com"  
   - name: "ai-proxy-advanced-cost-tags-modes"
