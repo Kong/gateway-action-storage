@@ -157,5 +157,6 @@ reset_branches:
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "backport-23563-to-next/3.16.x.x"
   - "23580/merge"
+  - "24017/merge"
 
 
