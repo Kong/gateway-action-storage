@@ -162,5 +162,6 @@ reset_branches:
   - "23580/merge"
   - "24017/merge"
   - "24060/merge"
+  - "test/aigw-master/fix-ai-tag-conditional-describe"
 
 
