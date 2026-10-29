@@ -161,5 +161,6 @@ reset_branches:
   - "backport-23563-to-next/3.16.x.x"
   - "23580/merge"
   - "24017/merge"
+  - "24060/merge"
 
 
