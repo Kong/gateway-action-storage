@@ -164,6 +164,12 @@ skips:
       - "23936/merge"
       - "backport/aigw-2.2.x-cve-oct2026"
       - "aigw-next/2.2.x"
+  - name: "ai-proxy-advanced-tools-use-test-suite"
+    reason: "Missing https://github.com/Kong/kong-ee/pull/22910 backport into aigw-release/2.2.1"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "Remove after #22910 is backported to aigw-release/2.2.1"
+    branches:
+      - "aigw-release/2.2.1"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
