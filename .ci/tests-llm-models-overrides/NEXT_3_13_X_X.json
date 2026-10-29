@@ -1,0 +1,13 @@
+{
+  "bedrock-cohere.chat.medium": "cohere.command-r-v1:0",
+  "gemini.chat.small:legacy": "gemini-2.0-flash",
+  "gemini.chat.small:legacy:modelversion": "gemini-2.0-flash-079",
+  "gemini.image-gen.medium": "imagen-4.0-generate-001",
+  "huggingface.chat.medium:mistral": "mistralai/Mistral-7B-Instruct-v0.2",
+  "ollama.chat.medium:legacy": "llama2",
+  "openai.chat.medium:4.1": "gpt-4.1",
+  "openai.chat.medium:4.1:dated": "gpt-4.1-2025-04-14",
+  "openai.chat.medium:gpt4": "gpt-4",
+  "openai.embeddings.large": "text-embedding-3-large",
+  "test.mock.medium": "try-to-override-the-model"
+}

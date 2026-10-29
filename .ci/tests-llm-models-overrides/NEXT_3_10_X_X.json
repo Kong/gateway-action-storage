@@ -1,0 +1,21 @@
+{
+  "anthropic.chat.medium:mock": "bedrock",
+  "anthropic.chat.small": "claude-2.1",
+  "bedrock-anthropic.chat.small": "global.anthropic.claude-sonnet-5",
+  "bedrock-cohere.chat.medium": "cohere.command-r-v1:0",
+  "cohere.chat.medium:legacy": "command",
+  "gemini.chat.small": "gemini-1.5-flash-002",
+  "huggingface.chat.medium:mistral": "mistralai/Mistral-7B-Instruct-v0.2",
+  "huggingface.chat.medium:mistral:legacy": "mistralai/Mistral-7B-Instruct-v0.1-instruct",
+  "mistral.chat.small": "mistral-tiny",
+  "ollama.chat.medium:legacy": "llama2",
+  "openai.chat.medium:4.1": "gpt-4.1",
+  "openai.chat.medium:4.1:dated": "gpt-4.1-2025-04-14",
+  "openai.chat.medium:4o": "gpt-4-0613",
+  "openai.chat.medium:4o:dated": "gpt-4o-2024-05-13",
+  "openai.chat.medium:gpt4": "gpt-4",
+  "openai.chat.small:4o": "gpt-3.5-turbo-0613",
+  "openai.embeddings.large": "text-embedding-3-large",
+  "openai.image-gen.small": "dall-e-3",
+  "test.mock.medium": "try-to-override-the-model"
+}

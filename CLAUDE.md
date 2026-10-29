@@ -10,12 +10,15 @@ workflows read files from here at a pinned ref, so the file paths, formats and
 semantics below are a public interface. Changing them can break CI in repos you
 cannot see from here.
 
-It holds two independent data sets:
+It holds three independent data sets:
 
 1. `skipped-tests/skipped.yaml`, the version-controlled E2E skip list that
    replaced the legacy `SKIP_E2E_TEST` environment variable.
 2. `.ci/runtimes*.json`, per-file test durations used by the gateway CI to
    balance and shard test runs.
+3. `.ci/tests-llm-models.json` and `.ci/tests-llm-models-overrides/`, the LLM
+   model map that the gateway API suite reads. They replaced the
+   `TESTS_LLM_MODELS_JSON*` repository variables of `kong-ee`.
 
 ## Layout
 
@@ -27,9 +30,14 @@ It holds two independent data sets:
 | `skipped-tests/tools/generate.js` | Renders the compact skip string consumed by CI. Prints to stdout only. |
 | `skipped-tests/tools/report.js` | Renders a Slack digest of current skips, with per-entry age from git history. Prints to stdout only. |
 | `.githooks/pre-commit` | Fast local checks, runs only when `skipped.yaml` is staged. |
+| `.githooks/pre-push` | Validates the LLM models map in the revision a push would publish. Runs only when that commit touches the map. |
 | `.github/workflows/validate-skipped-tests.yml` | CI validation on any push touching `skipped-tests/**`. |
 | `.github/workflows/slack-skip-digest.yml` | Weekly Monday cron posting the skip digest to Slack. Manual dispatch defaults to dry-run. |
 | `.ci/runtimes*.json` | Generated test-duration indexes, one variant per CI job/suite. |
+| `.ci/tests-llm-models.json` | The shared LLM model map. Every lane of the gateway API suite reads it. |
+| `.ci/tests-llm-models-overrides/<SANITIZED_BRANCH>.json` | Per-branch model overrides. One file per branch, holding only the keys that diverge. |
+| `.ci/tools/validate-tests-llm-models.mjs` | Zero-dependency validator for the two rows above. |
+| `.github/workflows/validate-llm-models.yml` | CI validation on any push touching the models map. |
 | `README.md` | Human-facing summary of the skip flow and YAML format. |
 
 ## Working on skipped.yaml
@@ -114,12 +122,73 @@ Populated by an automated job (commit messages look like
 - A rewrite of one of these files in a PR should be treated as bot output and
   left alone unless you know why it changed.
 
+## Working on the LLM models map
+
+The map is a flat JSON object: an abstract key maps to the concrete model id the
+tests call, for example `"openai.chat.small": "gpt-4o-mini"`. The suite asks for
+the abstract key and never for the model id.
+
+- `.ci/tests-llm-models.json` is the shared map. It applies to every branch.
+- `.ci/tests-llm-models-overrides/<SANITIZED_BRANCH>.json` is one branch's
+  override. It holds only the keys that diverge, and it wins over the shared map.
+- Do not edit either by hand. `kong-ee` owns the writer,
+  `scripts/push-tests-llm-models.sh`. It validates the content, prints the added,
+  deleted and changed keys, asks for confirmation, and pushes one file per run.
+- An override file name is the branch name in uppercase, with every other
+  character replaced by `_`. Example: `next/3.16.x.x` becomes
+  `NEXT_3_16_X_X.json`.
+- The name is lossy. Two branch names can produce the same file name, and one
+  file then serves both branches. No collision exists today. The validator
+  cannot see this; run `scripts/audit-tests-llm-models.sh` in `kong-ee` to list
+  the files whose branch does not exist.
+- A file may exist before its branch. Preparing an override for a release branch
+  that is not cut yet is normal, so the validator does not reject it.
+- The values are public model ids. Never commit a key, a token or any other
+  secret here, because this repository is public.
+- The shared file is read by every lane, including long-term support branches. A
+  bad shared file affects all of them at once.
+- Run `node .ci/tools/validate-tests-llm-models.mjs` after a hand edit. A clone
+  that set `core.hooksPath` also gets the same check from `.githooks/pre-push`,
+  which validates the revision a push would publish.
+
+### Format
+
+Every file holds exactly one JSON object:
+
+- Keys in alphabetical order. The push script writes them sorted, and the
+  validator rejects a hand edit that is out of order.
+- Every value is a non-empty string. No nested objects, no numbers, no nulls.
+- Two-space indent, and a newline at the end of the file.
+
+`node .ci/tools/validate-tests-llm-models.mjs` checks all of it, and
+`.github/workflows/validate-llm-models.yml` runs the same command on any push
+that touches the map.
+
+### File to branch table
+
+| File | Branch |
+|------|--------|
+| `AG_1882_VERTEX_SONNET_5_5.json` | none. Left over from the variable era; the branch is gone. |
+| `AIGW_NEXT_2_2_X.json` | `aigw-next/2.2.x` |
+| `NEXT_3_10_X_X.json` | `next/3.10.x.x` |
+| `NEXT_3_13_X_X.json` | `next/3.13.x.x` |
+| `NEXT_3_15_X_X.json` | `next/3.15.x.x` |
+| `NEXT_3_16_X_X.json` | `next/3.16.x.x` |
+| `RELEASE_3_14_0_17.json` | `release/3.14.0.17` |
+| `RELEASE_3_15_0_7.json` | `release/3.15.0.7` |
+| `RELEASE_3_15_0_7_TESTS_FIX.json` | `release-3.15.0.7-tests-fix` |
+| `RELEASE_3_16_0_2.json` | `release/3.16.0.2` |
+
+Update this table when you add or remove an override file.
+
 ## CI
 
 `.github/workflows/validate-skipped-tests.yml` runs on pushes touching
 `skipped-tests/**` and on manual dispatch. It installs with `npm ci`, runs
 `npm run validate`, then runs `npm run generate` and fails if the output does
 not match the format above. It does not check `.ci/**`.
+`.github/workflows/validate-llm-models.yml` checks the models map on any push
+that touches it. Nothing checks `.ci/runtimes*.json`, which is generated data.
 
 ## Slack digest
 
@@ -152,3 +221,8 @@ If you are an agent working in a gateway repo that consumes this one:
   the skip list.
 - Read `.ci/runtimes*.json` for the suite/file you are running to pick which
   job a given spec belongs to; do not regenerate them.
+- Do not edit the LLM models map from the consumer side either. The writer,
+  `scripts/push-tests-llm-models.sh`, lives in `kong-ee` and pushes here.
+- Change one branch's model ids with an override file, never by editing the
+  shared map, because the shared map applies to every branch including long-term
+  support ones.

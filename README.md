@@ -1,6 +1,6 @@
 # gateway-action-storage
 
-CI configuration and E2E skip management for gateway tests.
+CI configuration, shared test data and E2E skip management for gateway tests.
 
 This repo replaces the legacy `SKIP_E2E_TEST` variable with a version-controlled skip list in `skipped-tests/skipped.yaml`.
 
@@ -87,3 +87,39 @@ Preview the message locally without posting:
 cd skipped-tests/tools
 npm run report
 ```
+
+## LLM Models Map
+
+The gateway API suite in `kong-ee` reads LLM model ids from a map that lives
+here, not from a repository variable.
+
+| Path | Purpose |
+|------|---------|
+| `.ci/tests-llm-models.json` | The shared map. Every branch reads it. |
+| `.ci/tests-llm-models-overrides/<SANITIZED_BRANCH>.json` | One branch's override. Holds only the keys that diverge. |
+
+The suite asks for an abstract key, for example `openai.chat.small`, and the map
+returns the concrete model id. A branch override wins over the shared map.
+
+Update flow: run `scripts/push-tests-llm-models.sh` from a `kong-ee` clone. It
+validates the file, prints the keys it adds, deletes and changes, asks for
+confirmation, and pushes one file per run. Do not edit these files by hand.
+
+An override file name is the branch name in uppercase with every other character
+replaced by `_`, so `next/3.16.x.x` becomes `NEXT_3_16_X_X.json`. The mapping is
+lossy, and the file list is the only record of it;
+[`CLAUDE.md`](./CLAUDE.md) keeps the table.
+
+Each file holds one JSON object, with keys in alphabetical order and non-empty
+string values. The validator rejects anything else.
+
+Validate locally:
+
+```bash
+node .ci/tools/validate-tests-llm-models.mjs
+```
+
+Run `git config core.hooksPath .githooks` once and the pre-push hook applies the
+same check to the revision a push would publish, so a malformed or out-of-order
+map is stopped before it reaches `main`. CI runs the check again on any push that
+touches the map.

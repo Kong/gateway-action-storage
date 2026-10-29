@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+# Validates the LLM models map before a push publishes it.
+#
+# Git runs this hook before any ref is updated, so a file that breaks the format
+# never reaches main and never reaches the CI lanes that read the map from there.
+# It is the same tool as .github/workflows/validate-llm-models.yml, pointed at the
+# revision being pushed instead of the working tree, so the two cannot drift.
+#
+# It runs only in a clone that set the hooks path:
+#   git config core.hooksPath .githooks
+# A push from a clone without that setting, or from a bot, is checked by the
+# workflow after it lands. Bypass a false positive with `git push --no-verify`.
+set -euo pipefail
+
+VALIDATOR=".ci/tools/validate-tests-llm-models.mjs"
+MAP_PATH_PATTERN='^\.ci/tests-llm-models'
+ZERO_SHA="0000000000000000000000000000000000000000"
+
+log() {
+  printf '[models-map] %s\n' "$*" >&2
+}
+
+[ -f "$VALIDATOR" ] || {
+  log "error ${VALIDATOR} is missing, cannot validate"
+  exit 1
+}
+
+command -v node >/dev/null 2>&1 || {
+  log "error node is required to validate the models map"
+  exit 1
+}
+
+failed=0
+
+# Copies the map out of a revision into a temporary directory and validates it
+# there, so the check sees exactly what the push would publish. A file the
+# revision does not contain is left out, which keeps a deleted file valid.
+validate_revision() {
+  local sha="$1" tmp listing name
+  tmp="$(mktemp -d)"
+
+  mkdir -p "${tmp}/.ci"
+  if git cat-file -e "${sha}:.ci/tests-llm-models.json" 2>/dev/null; then
+    git show "${sha}:.ci/tests-llm-models.json" > "${tmp}/.ci/tests-llm-models.json"
+  fi
+
+  listing="$(git ls-tree --name-only "${sha}:.ci/tests-llm-models-overrides" 2>/dev/null || true)"
+  if [ -n "$listing" ]; then
+    mkdir -p "${tmp}/.ci/tests-llm-models-overrides"
+    while IFS= read -r name; do
+      [ -n "$name" ] || continue
+      git show "${sha}:.ci/tests-llm-models-overrides/${name}" \
+        > "${tmp}/.ci/tests-llm-models-overrides/${name}"
+    done <<< "$listing"
+  fi
+
+  if ! node "$VALIDATOR" --root "${tmp}/.ci"; then
+    log "error the models map is not valid in ${sha}"
+    failed=1
+  fi
+
+  rm -rf "$tmp"
+}
+
+# Git hands the refs on stdin as: local ref, local sha, remote ref, remote sha.
+# Reading them up front keeps them out of reach of anything the check runs.
+refs="$(cat)"
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ -n "${local_sha:-}" ] || continue
+  # A deleted ref publishes nothing.
+  [ "$local_sha" = "$ZERO_SHA" ] && continue
+
+  if [ "$remote_sha" = "$ZERO_SHA" ]; then
+    # A new ref. Every file in it is new to the remote, so check the map without
+    # working out which commits touched it; walking the history costs more than
+    # the check does.
+    log "validating the models map in ${local_ref} (new ref)"
+    validate_revision "$local_sha"
+    continue
+  fi
+
+  # An unrelated push should not pay for this check.
+  changed="$(git diff --name-only "$remote_sha" "$local_sha" 2>/dev/null |
+    grep -E "$MAP_PATH_PATTERN" || true)"
+  [ -n "$changed" ] || continue
+
+  log "validating the models map in ${local_ref}"
+  validate_revision "$local_sha"
+done <<< "$refs"
+
+if [ "$failed" -ne 0 ]; then
+  log "the push was stopped. Fix the files above, or push with --no-verify."
+  exit 1
+fi
+
+exit 0
