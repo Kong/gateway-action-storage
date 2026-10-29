@@ -153,6 +153,13 @@ skips:
     branches:
       - "23824/merge"
       - "release/3.14.0.17"
+  - name: "ai-guardrail-gemini-llm-format"
+    reason: "Expected failure on the aigw 2.2.1 CVE backport (kong-ee #23936): ai-aws-guardrails masking drops the Gemini 'contents' field, so Vertex returns 400. The fix (kong-ee #22745) is not a CVE fix and is not in aigw-next/2.2.x."
+    owner: "meng.wang@konghq.com"
+    note: "Remove after aigw 2.2.1 is released, or when #22745 is backported to aigw-next/2.2.x."
+    branches:
+      - "23936/merge"
+      - "aigw-next/2.2.x"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
