@@ -112,7 +112,10 @@ skips_all_branches:
     owner: "zhaokun.li@konghq.com"
   - name: "routes-protocol-grpc"
     reason: "Needs update error message because of images updated"
-    owner: "kally.shi@konghq.com"   
+    owner: "kally.shi@konghq.com"
+  - name: "ai-semantic-cache"
+    raeson: "Error: Received expected 504 timeout from openai, skipping failure"
+    owner: "eduardo.gallegos@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
