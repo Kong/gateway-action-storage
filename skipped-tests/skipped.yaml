@@ -114,7 +114,7 @@ skips_all_branches:
     reason: "Needs update error message because of images updated"
     owner: "kally.shi@konghq.com"
   - name: "ai-semantic-cache"
-    raeson: "Error: Received expected 504 timeout from openai, skipping failure"
+    reason: "Error: Received expected 504 timeout from openai, skipping failure"
     owner: "eduardo.gallegos@konghq.com"
 
 skips:
