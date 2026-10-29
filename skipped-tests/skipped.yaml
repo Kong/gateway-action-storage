@@ -159,6 +159,7 @@ skips:
     note: "Remove after aigw 2.2.1 is released, or when #22745 is backported to aigw-next/2.2.x."
     branches:
       - "23936/merge"
+      - "backport/aigw-2.2.x-cve-oct2026"
       - "aigw-next/2.2.x"
 
 reset_branches:
