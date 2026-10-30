@@ -1,0 +1,4 @@
+{
+  "gemini-vertex.chat.medium:bare": "gemini-2.5-pro",
+  "gemini-vertex.chat.small": "gemini-2.5-flash"
+}
