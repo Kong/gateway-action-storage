@@ -116,6 +116,15 @@ skips_all_branches:
   - name: "ai-semantic-cache"
     reason: "Error: Received expected 504 timeout from openai, skipping failure"
     owner: "eduardo.gallegos@konghq.com"
+  - name: "hmac-validator-fips"
+    reason: "Expected axios response status 401 to equal 201. Response body: {"message":"Invalid RBAC credentials"}"
+    owner: "kally.shi@konghq.com"
+  - name: "rate-limiting-principal"
+    reason: " Error: No response from 'kong-dp1' within 10s: this helper needs timeout and bash with /dev/tcp in the image. docker exec reported: <empty>"
+    owner: "eduardo.gallegos@konghq.com"
+  - name: "rla-principal-identifier"
+    reason: " Error: No response from 'kong-dp1' within 10s: this helper needs timeout and bash with /dev/tcp in the image. docker exec reported: <empty>"
+    owner: "eduardo.gallegos@konghq.com"
 
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
