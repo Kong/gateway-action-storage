@@ -195,6 +195,10 @@ reset_branches:
   - "24048/merge"
   - "24049/merge"
   - "24051/merge"
+  - "23797/merge"
+  - "test/master/ai-guardrails-native-format-suites"
+  - "24163/merge"
+  - "test/aigw-master/guardrail-suite-fixes"
 
 
 
