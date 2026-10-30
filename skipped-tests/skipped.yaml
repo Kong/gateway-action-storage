@@ -5,7 +5,6 @@ skips_all_branches:
   - name: "request-id-header"
     reason: "Failed in master branch"
     owner: "anamica.kartik@konghq.com"
-  - name: "ai-gemini-reasoning-token-accounting"
   - name: "ai-proxy-advanced-passthrough-vercel"
     reason: "vercel prodia/flux-fast-schenell model error:Unexpected 400 response from vercel: AI_APICallError"
     owner: "jp.zhou@konghq.com"
