@@ -46,8 +46,27 @@
           "type": "array",
           "items": { "type": "string", "minLength": 1 },
           "minItems": 1
+        },
+        "include_descendants": {
+          "type": "boolean",
+          "description": "Also skip branches whose head contains the current tip of each listed branch. Use exact branch names."
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "include_descendants": { "const": true } },
+            "required": ["include_descendants"]
+          },
+          "then": {
+            "properties": {
+              "branches": {
+                "items": { "not": { "pattern": "\\*" } }
+              }
+            }
+          }
+        }
+      ]
     }
   }
 }
