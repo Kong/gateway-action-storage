@@ -18,10 +18,6 @@ const byBranch = new Map();
 for (const entry of data.skips ?? []) {
   for (const branch of entry.branches ?? []) {
     const includeDescendants = entry.include_descendants === true;
-    if (includeDescendants && branch.includes("*")) {
-      throw new Error(`include_descendants requires exact branch names: ${branch}`);
-    }
-
     for (const ruleBranch of includeDescendants ? [branch, `${branch}^`] : [branch]) {
       const names = byBranch.get(ruleBranch) ?? [];
       names.push(entry.name);
