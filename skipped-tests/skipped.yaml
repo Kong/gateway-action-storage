@@ -124,8 +124,9 @@ skips_all_branches:
     owner: "tony.dong@konghq.com"
 
 
-# Set include_descendants: true to extend a rule to branches whose head contains
-# the current tip of each listed branch. A rebase stops the skip when its new base lacks that tip.
+# Set include_descendants: true for frozen or slow-moving branches.
+# A new commit on a listed branch stops skipping existing descendants until
+# their heads include the updated tip.
 skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
     reason: "Gemini Live API does not consistently include thinking tokens in totalTokenCount; fixed on trunk by PR #21689 but aigw-2.0.3 is frozen without this fix"
