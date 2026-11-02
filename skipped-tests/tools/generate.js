@@ -14,7 +14,7 @@ if (allBranches.length > 0) {
   parts.push(`all:${allBranches.map((e) => e.name).join(",")}`);
 }
 
-const byBranch = new Map();
+const byBranch = Object.create(null);
 for (const entry of data.skips ?? []) {
   for (const branch of entry.branches ?? []) {
     const includeDescendants = entry.include_descendants === true;
@@ -23,14 +23,13 @@ for (const entry of data.skips ?? []) {
       continue;
     }
 
+    // The filter uses ^ as an internal marker, not as Git revision syntax.
     for (const ruleBranch of includeDescendants ? [branch, `${branch}^`] : [branch]) {
-      const names = byBranch.get(ruleBranch) ?? [];
-      names.push(entry.name);
-      byBranch.set(ruleBranch, names);
+      (byBranch[ruleBranch] ??= []).push(entry.name);
     }
   }
 }
-for (const [branch, names] of byBranch) {
+for (const [branch, names] of Object.entries(byBranch)) {
   parts.push(`${branch}:${names.join(",")}`);
 }
 
