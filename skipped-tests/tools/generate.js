@@ -18,6 +18,11 @@ const byBranch = new Map();
 for (const entry of data.skips ?? []) {
   for (const branch of entry.branches ?? []) {
     const includeDescendants = entry.include_descendants === true;
+    if (includeDescendants && branch.includes("*")) {
+      // Keep valid rules if invalid config bypasses schema validation.
+      continue;
+    }
+
     for (const ruleBranch of includeDescendants ? [branch, `${branch}^`] : [branch]) {
       const names = byBranch.get(ruleBranch) ?? [];
       names.push(entry.name);
