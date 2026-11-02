@@ -47,7 +47,13 @@
           "then": {
             "properties": {
               "branches": {
-                "items": { "not": { "pattern": "\\*" } }
+                "type": "array",
+                "items": {
+                  "not": {
+                    "type": "string",
+                    "pattern": "\\*"
+                  }
+                }
               }
             }
           }
