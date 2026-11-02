@@ -184,17 +184,7 @@ reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
-  - "backport-23563-to-next/3.16.x.x"
-  - "23580/merge"
-  - "24017/merge"
-  - "24060/merge"
-  - "test/aigw-master/fix-ai-tag-conditional-describe"
-  - "24048/merge"
-  - "24049/merge"
-  - "24051/merge"
-  - "23797/merge"
   - "test/master/ai-guardrails-native-format-suites"
-  - "24163/merge"
   - "test/aigw-master/guardrail-suite-fixes"
 
 
