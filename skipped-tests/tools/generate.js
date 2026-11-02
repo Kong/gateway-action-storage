@@ -14,13 +14,21 @@ if (allBranches.length > 0) {
   parts.push(`all:${allBranches.map((e) => e.name).join(",")}`);
 }
 
-const byBranch = {};
+const byBranch = new Map();
 for (const entry of data.skips ?? []) {
   for (const branch of entry.branches ?? []) {
-    (byBranch[branch] ??= []).push(entry.name);
+    const includeDescendants = entry.include_descendants === true;
+    if (includeDescendants && branch.includes("*")) {
+      throw new Error(`include_descendants requires exact branch names: ${branch}`);
+    }
+
+    const ruleBranch = `${branch}${includeDescendants ? "^" : ""}`;
+    const names = byBranch.get(ruleBranch) ?? [];
+    names.push(entry.name);
+    byBranch.set(ruleBranch, names);
   }
 }
-for (const [branch, names] of Object.entries(byBranch)) {
+for (const [branch, names] of byBranch) {
   parts.push(`${branch}:${names.join(",")}`);
 }
 

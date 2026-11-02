@@ -115,6 +115,8 @@ skips_all_branches:
     note: "https://github.com/Kong/kong-ee/actions/runs/41611853514/job/125948134813?pr=24234"
 
 
+# Set include_descendants: true to extend a rule to branches whose head contains
+# the current tip of each listed branch. A rebase stops the skip when its new base lacks that tip.
 skips:
   - name: "ai-proxy-advanced-restful"
     reason: "faile on 3.13.x.x:  https://github.com/Kong/kong-ee/actions/runs/41614527307/job/125874505232?pr=22583"
