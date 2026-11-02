@@ -22,10 +22,11 @@ for (const entry of data.skips ?? []) {
       throw new Error(`include_descendants requires exact branch names: ${branch}`);
     }
 
-    const ruleBranch = `${branch}${includeDescendants ? "^" : ""}`;
-    const names = byBranch.get(ruleBranch) ?? [];
-    names.push(entry.name);
-    byBranch.set(ruleBranch, names);
+    for (const ruleBranch of includeDescendants ? [branch, `${branch}^`] : [branch]) {
+      const names = byBranch.get(ruleBranch) ?? [];
+      names.push(entry.name);
+      byBranch.set(ruleBranch, names);
+    }
   }
 }
 for (const [branch, names] of byBranch) {
