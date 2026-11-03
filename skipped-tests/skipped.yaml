@@ -115,6 +115,10 @@ skips_all_branches:
   - name: "tcp-log-queue"
     reason: "Timed Out (after 60.021s) -- Last error: kq47729F16227B-i001 should be delivered on shutdown: expected [] to have a length of 1 but got +0"
     owner: "tony.dong@konghq.com"
+  - name: "ai-proxy-advanced-dynamic-pricing-sources"
+    reason: "Fails on the PR check, blocking #24234"
+    owner: "yi.jin@konghq.com"
+    note: "https://github.com/Kong/kong-ee/actions/runs/41611853514/job/125948134813?pr=24234"
 
 
 skips:
