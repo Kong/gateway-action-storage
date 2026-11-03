@@ -189,6 +189,7 @@ reset_branches:
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "test/master/ai-guardrails-native-format-suites"
   - "test/aigw-master/guardrail-suite-fixes"
+  - "24236/merge"
 
 
 
