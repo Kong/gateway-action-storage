@@ -106,9 +106,6 @@ skips_all_branches:
   - name: "hmac-signature-validator-fips"
     reason: 'https://konghq.atlassian.net/browse/KAG-10470 - Expected axios response status 401 to equal 201. Response body: {"message":"Invalid RBAC credentials"}'
     owner: "kally.shi@konghq.com"
-  - name: "tcp-log-queue"
-    reason: "Timed Out (after 60.021s) -- Last error: kq47729F16227B-i001 should be delivered on shutdown: expected [] to have a length of 1 but got +0"
-    owner: "tony.dong@konghq.com"
 
 
 # Set include_descendants: true for frozen or slow-moving branches.
