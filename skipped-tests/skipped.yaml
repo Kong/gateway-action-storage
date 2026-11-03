@@ -175,6 +175,8 @@ skips:
     branches:
       - "23924/merge"
       - "next/3.13.x.x"
+      - "24295/merge"
+      - "release/3.13.0.12"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
