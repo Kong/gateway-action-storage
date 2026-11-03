@@ -177,6 +177,12 @@ skips:
       - "next/3.13.x.x"
       - "24295/merge"
       - "release/3.13.0.12"
+  - name: "ai-proxy-advanced-restful-azure"
+    reason: "AssertionError: Background Entity ID should be present: expected undefined to exist"
+    owner: "vincenzo.gasparo@konghq.com"
+    branches:
+      - "release/3.14.*"
+      - "next/3.14.*"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
