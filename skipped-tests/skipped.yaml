@@ -110,7 +110,7 @@ skips_all_branches:
   - name: "ai-semantic-cache"
     reason: "Error: Received expected 504 timeout from openai, skipping failure"
     owner: "eduardo.gallegos@konghq.com"
-  - name: "hmac-validator-fips"
+  - name: "hmac-signature-validator-fips"
     reason: 'https://konghq.atlassian.net/browse/KAG-10470 - Expected axios response status 401 to equal 201. Response body: {"message":"Invalid RBAC credentials"}'
     owner: "kally.shi@konghq.com"
   - name: "rate-limiting-principal"
