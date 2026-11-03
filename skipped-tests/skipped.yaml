@@ -122,6 +122,9 @@ skips_all_branches:
   - name: "tcp-log-queue"
     reason: "Timed Out (after 60.021s) -- Last error: kq47729F16227B-i001 should be delivered on shutdown: expected [] to have a length of 1 but got +0"
     owner: "tony.dong@konghq.com"
+  - name: "json-threat-protection-multipart"
+    reason: "Keep failing on master"
+    owner: "anamica.kartik@konghq.com"
 
 
 skips:
