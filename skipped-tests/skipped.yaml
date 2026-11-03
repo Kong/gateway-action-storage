@@ -165,6 +165,12 @@ skips:
     note: "Remove after #22910 is backported to aigw-release/2.2.1"
     branches:
       - "aigw-release/2.2.1"
+  - name: "ai-proxy-advanced-restful"
+    reason: "blocking backports to next/3.13.x.x"
+    owner: "vincenzo.gasparo@konghq.com"
+    branches:
+      - "23924/merge"
+      - "next/3.13.x.x"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
@@ -172,6 +178,5 @@ reset_branches:
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "test/master/ai-guardrails-native-format-suites"
   - "test/aigw-master/guardrail-suite-fixes"
-
-
-
+  - "24236/merge"
+  - "24294/merge"
