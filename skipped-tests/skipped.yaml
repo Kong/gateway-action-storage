@@ -106,12 +106,6 @@ skips_all_branches:
   - name: "hmac-signature-validator-fips"
     reason: 'https://konghq.atlassian.net/browse/KAG-10470 - Expected axios response status 401 to equal 201. Response body: {"message":"Invalid RBAC credentials"}'
     owner: "kally.shi@konghq.com"
-  - name: "rate-limiting-principal"
-    reason: "Error: No response from 'kong-dp1' within 10s: this helper needs timeout and bash with /dev/tcp in the image. docker exec reported: <empty>"
-    owner: "eduardo.gallegos@konghq.com"
-  - name: "rla-principal-identifier"
-    reason: "Error: No response from 'kong-dp1' within 10s: this helper needs timeout and bash with /dev/tcp in the image. docker exec reported: <empty>"
-    owner: "eduardo.gallegos@konghq.com"
   - name: "tcp-log-queue"
     reason: "Timed Out (after 60.021s) -- Last error: kq47729F16227B-i001 should be delivered on shutdown: expected [] to have a length of 1 but got +0"
     owner: "tony.dong@konghq.com"
@@ -198,5 +192,3 @@ reset_branches:
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "test/master/ai-guardrails-native-format-suites"
   - "test/aigw-master/guardrail-suite-fixes"
-  - "24236/merge"
-  - "24294/merge"
