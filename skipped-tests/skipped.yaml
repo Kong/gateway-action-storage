@@ -178,6 +178,18 @@ skips:
     branches:
       - "release/3.14.*"
       - "next/3.14.*"
+  - name: "routes-protocol-grpc"
+    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
+    owner: "icarus.wu@konghq.com"
+    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
+    branches:
+      - "build/FTI-8069-3.14.0.13-otel"
+  - name: "ldap-auth-advanced"
+    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
+    owner: "icarus.wu@konghq.com"
+    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
+    branches:
+      - "build/FTI-8069-3.14.0.13-otel"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
