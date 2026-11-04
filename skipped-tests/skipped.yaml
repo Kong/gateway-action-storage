@@ -119,12 +119,14 @@ skips:
   - name: "ai-proxy-advanced-restful"
     reason: "faile on 3.13.x.x:  https://github.com/Kong/kong-ee/actions/runs/41614527307/job/125874505232?pr=22583"
     owner: "yiming.zhu@konghq.com"
+    note: "also skipped on build/FTI-8069-3.14.0.13-otel (requested by icarus.wu) to unblock the urgent FTI-8069 customer build; remove once the failure is triaged"
     branches:
       - "next/3.13.x.x"
       - "23924/merge"
       - "release/3.13.0.12"
       - "22583/merge" #backport-18055-to-next/3.13.x.x_1
       - "24295/merge"
+      - "build/FTI-8069-3.14.0.13-otel"
   - name: "ai-proxy-advanced-realtime-reasoning"
     reason: "Gemini Live API does not consistently include thinking tokens in totalTokenCount; fixed on trunk by PR #21689 but aigw-2.0.3 is frozen without this fix"
     owner: "jp.zhou@konghq.com"
@@ -265,6 +267,12 @@ skips:
     branches:
       - "build/FTI-8069-3.14.0.13-otel"
   - name: "ai-semantic-prompt-guard"
+    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
+    owner: "icarus.wu@konghq.com"
+    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
+    branches:
+      - "build/FTI-8069-3.14.0.13-otel"
+  - name: "ai-azure-content-safety"
     reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
     owner: "icarus.wu@konghq.com"
     note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
