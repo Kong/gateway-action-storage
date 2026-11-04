@@ -124,6 +124,7 @@ skips:
       - "23924/merge"
       - "release/3.13.0.12"
       - "22583/merge" #backport-18055-to-next/3.13.x.x_1
+      - "24295/merge"
   - name: "ai-proxy-advanced-realtime-reasoning"
     reason: "Gemini Live API does not consistently include thinking tokens in totalTokenCount; fixed on trunk by PR #21689 but aigw-2.0.3 is frozen without this fix"
     owner: "jp.zhou@konghq.com"
@@ -171,14 +172,6 @@ skips:
     note: "Remove after #22910 is backported to aigw-release/2.2.1"
     branches:
       - "aigw-release/2.2.1"
-  - name: "ai-proxy-advanced-restful"
-    reason: "blocking backports to next/3.13.x.x"
-    owner: "vincenzo.gasparo@konghq.com"
-    branches:
-      - "23924/merge"
-      - "next/3.13.x.x"
-      - "24295/merge"
-      - "release/3.13.0.12"
   - name: "ai-proxy-advanced-restful-azure"
     reason: "AssertionError: Background Entity ID should be present: expected undefined to exist"
     owner: "vincenzo.gasparo@konghq.com"
