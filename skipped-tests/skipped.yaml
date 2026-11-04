@@ -118,7 +118,7 @@ skips_all_branches:
 skips:
   - name: "ai-proxy-advanced-restful"
     reason: "faile on 3.13.x.x:  https://github.com/Kong/kong-ee/actions/runs/41614527307/job/125874505232?pr=22583"
-    owner: "vincenzo.gasparo@konghq.com"
+    owner: "yiming.zhu@konghq.com"
     note: "also skipped on build/FTI-8069-3.14.0.13-otel (requested by kally.shi) to unblock the urgent FTI-8069 customer build; remove once the failure is triaged. PR refs below are the PRs open against next/3.13.x.x on 2026-11-04; new PRs must be added by number."
     branches:
       - "next/3.13.x.x"
