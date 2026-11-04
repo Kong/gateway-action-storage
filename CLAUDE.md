@@ -61,6 +61,12 @@ writes a file, and it prints an empty line when there is nothing to skip.
 - `skips`: applied only to the branches named in the entry's `branches` list.
   Branch values are the names CI reports, which can be a real branch
   (`ai-next/2.0.x`) or a PR merge ref (`refs/pull/22651/merge`).
+- `include_descendants` (skips entries only): also skip on branches whose head
+  contains the listed branch's tip, re-resolved via GitHub compare at each job
+  start. Use it only on frozen or slow-moving branches; a new commit on the
+  listed branch stops the skip for existing descendants until they rebase. A
+  deleted branch or a fork PR fails open (the spec runs). README.md has the full
+  usage guide.
 - `reset_branches`: a branch listed here runs with no skips applied at all.
   Use it to clear inherited skips on a hotfix or release branch.
 - All three sections are optional; a missing or empty section means no skips of
@@ -75,16 +81,21 @@ writes a file, and it prints an empty line when there is nothing to skip.
 - Test names must be unique within each section. A test needing different skips
   on different branches goes in one `skips` entry listing all those branches.
 - `reset_branches` values must be unique.
+- `include_descendants` is a boolean, only valid in `skips` entries, and cannot
+  combine with wildcard branch names.
 - No extra top-level or per-entry keys (`additionalProperties: false`).
 - The pre-commit hook rejects tab indentation.
 
 ### Output contract of generate.js
 
-One line, `key:value;key:value`, where a key is `all` or a branch name and a
-value is a comma-separated list of test names, or the literal `reset`.
+One line, `key:value;key:value`, where a key is `all`, a branch name, or a branch
+name suffixed with `^` (an internal marker for `include_descendants` entries, not
+Git revision syntax; the descendant-aware filter expands it to "heads containing
+this branch's tip", older filters ignore it because no real branch name contains
+`^`), and a value is a comma-separated list of test names, or the literal `reset`.
 Empty output is valid and means "no skips". The CI workflow asserts this shape
-with a regex, so do not change the separator, the `all` key, or the `reset`
-token without coordinating with consumer repos.
+with a regex, so do not change the separator, the `all` key, the `reset` token or
+the `^` marker without coordinating with consumer repos.
 
 ### Editing conventions
 
