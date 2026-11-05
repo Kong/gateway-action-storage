@@ -119,7 +119,7 @@ skips:
   - name: "ai-proxy-advanced-restful"
     reason: "faile on 3.13.x.x:  https://github.com/Kong/kong-ee/actions/runs/41614527307/job/125874505232?pr=22583"
     owner: "yiming.zhu@konghq.com"
-    note: "also skipped on build/FTI-8069-3.14.0.13-otel (requested by kally.shi) to unblock the urgent FTI-8069 customer build; remove once the failure is triaged. PR refs below are the PRs open against next/3.13.x.x on 2026-11-04; new PRs must be added by number."
+    note: "PR refs below are the PRs open against next/3.13.x.x on 2026-11-04; new PRs must be added by number."
     branches:
       - "next/3.13.x.x"
       - "23924/merge"
@@ -127,7 +127,6 @@ skips:
       - "22583/merge" #backport-18055-to-next/3.13.x.x_1
       - "24295/merge"
       - "24356/merge" #3.13.0.12 release PR: brotli and KAG-9925
-      - "build/FTI-8069-3.14.0.13-otel"
       - "24382/merge"
       - "24362/merge"
       - "24349/merge"
@@ -149,10 +148,8 @@ skips:
   - name: "ai-proxy-advanced-realtime-reasoning"
     reason: "Gemini Live API does not consistently include thinking tokens in totalTokenCount; fixed on trunk by PR #21689 but aigw-2.0.3 is frozen without this fix"
     owner: "jp.zhou@konghq.com"
-    note: "also skipped on build/FTI-8069-3.14.0.13-otel (requested by kally.shi) to unblock the urgent FTI-8069 customer build; remove once the failure is triaged"
     branches:
       - "aigw-2.0.3"
-      - "build/FTI-8069-3.14.0.13-otel"
   - name: "ai-proxy-advanced-response"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
@@ -201,114 +198,6 @@ skips:
     branches:
       - "release/3.14.*"
       - "next/3.14.*"
-  - name: "routes-protocol-grpc"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ldap-auth-advanced"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "openid-connect-keycloak"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "vaults-hcv"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-otel-metrics"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-proxy-advanced-structured-output"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-rag-injector-partials"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-rag-injector-proxy-otel-metrics"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-semantic-cache-otel-metrics"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-semantic-prompt-guard-partials"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-proxy-advanced-chat-reasoning-gemini-public"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-proxy-advanced-native-format"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-proxy-advanced-partials"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-proxy-advanced-prompt-decorator"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-semantic-prompt-guard"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "ai-azure-content-safety"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "oidc-userinfo"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
-  - name: "solace-log"
-    reason: "failing on build/FTI-8069-3.14.0.13-otel, blocking an urgent customer build delivery"
-    owner: "kally.shi@konghq.com"
-    note: "temporary skip to unblock the FTI-8069 customer build; remove once the failure is triaged"
-    branches:
-      - "build/FTI-8069-3.14.0.13-otel"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
