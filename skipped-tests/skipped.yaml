@@ -126,6 +126,7 @@ skips:
       - "release/3.13.0.12"
       - "22583/merge" #backport-18055-to-next/3.13.x.x_1
       - "24295/merge"
+      - "24356/merge" #3.13.0.12 release PR: brotli and KAG-9925
       - "build/FTI-8069-3.14.0.13-otel"
       - "24382/merge"
       - "24362/merge"
