@@ -198,6 +198,7 @@ skips:
     branches:
       - "release/3.14.*"
       - "next/3.14.*"
+      - "release-3.14.0.17-e2e-fix"
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
