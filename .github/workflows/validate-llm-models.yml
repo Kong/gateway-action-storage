@@ -1,0 +1,24 @@
+name: Validate LLM models map
+
+on:
+  push:
+    paths:
+      - ".ci/tests-llm-models.json"
+      - ".ci/tests-llm-models-overrides/**"
+      - ".ci/tools/validate-tests-llm-models.mjs"
+      - ".github/workflows/validate-llm-models.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate the LLM models map
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate the map files
+        run: node .ci/tools/validate-tests-llm-models.mjs
