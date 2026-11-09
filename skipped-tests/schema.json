@@ -37,7 +37,28 @@
     },
     "branch_entry": {
       "type": "object",
-      "allOf": [{ "$ref": "#/definitions/base_fields" }],
+      "allOf": [
+        { "$ref": "#/definitions/base_fields" },
+        {
+          "if": {
+            "properties": { "include_descendants": { "const": true } },
+            "required": ["include_descendants"]
+          },
+          "then": {
+            "properties": {
+              "branches": {
+                "type": "array",
+                "items": {
+                  "not": {
+                    "type": "string",
+                    "pattern": "\\*"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
       "required": ["name", "reason", "owner", "branches"],
       "additionalProperties": false,
       "properties": {
@@ -46,6 +67,10 @@
           "type": "array",
           "items": { "type": "string", "minLength": 1 },
           "minItems": 1
+        },
+        "include_descendants": {
+          "type": "boolean",
+          "description": "Also skip branches whose head contains the current tip of each listed branch. Use exact branch names."
         }
       }
     }

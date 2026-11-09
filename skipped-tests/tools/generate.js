@@ -14,10 +14,19 @@ if (allBranches.length > 0) {
   parts.push(`all:${allBranches.map((e) => e.name).join(",")}`);
 }
 
-const byBranch = {};
+const byBranch = Object.create(null);
 for (const entry of data.skips ?? []) {
   for (const branch of entry.branches ?? []) {
-    (byBranch[branch] ??= []).push(entry.name);
+    const includeDescendants = entry.include_descendants === true;
+    if (includeDescendants && branch.includes("*")) {
+      // Keep valid rules if invalid config bypasses schema validation.
+      continue;
+    }
+
+    // The filter uses ^ as an internal marker, not as Git revision syntax.
+    for (const ruleBranch of includeDescendants ? [branch, `${branch}^`] : [branch]) {
+      (byBranch[ruleBranch] ??= []).push(entry.name);
+    }
   }
 }
 for (const [branch, names] of Object.entries(byBranch)) {
