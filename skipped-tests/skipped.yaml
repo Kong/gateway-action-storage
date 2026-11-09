@@ -122,10 +122,7 @@ skips:
     branches:
       - "next/3.13.x.x"
       - "23924/merge"
-      - "release/3.13.0.12"
       - "22583/merge" #backport-18055-to-next/3.13.x.x_1
-      - "24295/merge"
-      - "24356/merge" #3.13.0.12 release PR: brotli and KAG-9925
       - "24382/merge"
       - "24362/merge"
       - "24349/merge"
@@ -175,27 +172,6 @@ skips:
       - "next/3.12.x.x"
       - "backport-21114-to-next/3.12.x.x"
       - "21494/merge"
-  - name: "ai-guardrail-gemini-llm-format"
-    reason: "Expected failure on the aigw 2.2.1 CVE backport (kong-ee #23936): ai-aws-guardrails masking drops the Gemini 'contents' field, so Vertex returns 400. The fix (kong-ee #22745) is not a CVE fix and is not in aigw-next/2.2.x."
-    owner: "meng.wang@konghq.com"
-    note: "Remove after aigw 2.2.1 is released, or when #22745 is backported to aigw-next/2.2.x."
-    branches:
-      - "23936/merge"
-      - "backport/aigw-2.2.x-cve-oct2026"
-      - "aigw-next/2.2.x"
-      - "aigw-2.2.1"
-      - "aigw-2.2.1-*"
-      - "aigw-release/2.2.1"
-      - "backport/24375-aigw-release-2.2.1" # kong-ee #24406, the filter reads the PR source branch
-  - name: "ai-proxy-advanced-tools-use-gemini"
-    reason: "Gemini 3.x returns 400 on converted function calls without a thought signature. The fix (kong-ee #22910) is not a CVE fix and is not in aigw-next/2.2.x."
-    owner: "meng.wang@konghq.com"
-    note: "Remove after aigw 2.2.1 is released, or when #22910 is backported to aigw-release/2.2.1. The ai-proxy-advanced-tools-use-test-suite entry below matches no spec file."
-    branches:
-      - "aigw-release/2.2.1"
-      - "backport/24375-aigw-release-2.2.1" # kong-ee #24406
-      - "aigw-2.2.1"
-      - "aigw-2.2.1-*" # release tag runs, e.g. aigw-2.2.1-rc.2
   - name: "ai-proxy-advanced-tools-use-test-suite"
     reason: "Missing https://github.com/Kong/kong-ee/pull/22910 backport into aigw-release/2.2.1"
     owner: "vincenzo.gasparo@konghq.com"
