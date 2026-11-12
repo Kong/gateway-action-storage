@@ -42,6 +42,10 @@ skips_all_branches:
     reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282. Also: streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713"
     owner: "liangwen.chen@konghq.com"
   # AG-1798: the OUTPUT guard scans the raw provider envelope, so pi_and_jailbreak never matches
+  - name: "ai-gcp-model-armor"
+    reason: "streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713. Buffered OUTPUT prompt-injection blocking never fires either: https://konghq.atlassian.net/browse/AG-1798"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "AG-1713 and AG-1798 - un-skip once both are fixed"
   - name: "ai-proxy-advanced-anthropic-streaming"
     reason: "Spec side fixed in #23139; the vertex gemini-3.8-flash leg still fails because the driver overwrites a tool_calls finish reason with the upstream STOP: https://github.com/Kong/kong-ee/actions/runs/36690746674"
     owner: "vincenzo.gasparo@konghq.com"
