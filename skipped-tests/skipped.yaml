@@ -32,20 +32,6 @@ skips_all_branches:
   - name: "app-dynamics"
     reason: "Flaky test"
     owner: "jp.zhou@konghq.com"
-  - name: "ai-azure-content-safety-native"
-    reason: "Azure OpenAI's own filter blocks the prompt before the plugin can classify it."
-    owner: "vincenzo.gasparo@konghq.com"
-  - name: "ai-azure-content-safety-custom-guardrail"
-    reason: "Same as ai-azure-content-safety-native above."
-    owner: "vincenzo.gasparo@konghq.com"
-  - name: "ai-lakera-guard"
-    reason: "Right now it always fails and blocks the urgent backport to next/3.14: https://github.com/Kong/kong-ee/actions/runs/31813891015/job/94815917237  pr=21282. Also: streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713"
-    owner: "liangwen.chen@konghq.com"
-  # AG-1798: the OUTPUT guard scans the raw provider envelope, so pi_and_jailbreak never matches
-  - name: "ai-gcp-model-armor"
-    reason: "streaming OUTPUT block is a race between the guardrail verdict and stream delivery, nondeterministic until fixed, see https://konghq.atlassian.net/browse/AG-1713. Buffered OUTPUT prompt-injection blocking never fires either: https://konghq.atlassian.net/browse/AG-1798"
-    owner: "vincenzo.gasparo@konghq.com"
-    note: "AG-1713 and AG-1798 - un-skip once both are fixed"
   - name: "ai-proxy-advanced-anthropic-streaming"
     reason: "Spec side fixed in #23139; the vertex gemini-3.8-flash leg still fails because the driver overwrites a tool_calls finish reason with the upstream STOP: https://github.com/Kong/kong-ee/actions/runs/36690746674"
     owner: "vincenzo.gasparo@konghq.com"
@@ -212,6 +198,36 @@ skips:
       - "release/3.14.*"
       - "next/3.14.*"
       - "release-3.14.0.17-e2e-fix"
+  # The guardrail suites from before kong-ee #24163 still run on these branches; the other three
+  # entries below reuse this entry's reason, note and branches.
+  - name: "ai-azure-content-safety-native"
+    reason: &pre_24163_guardrails_reason "aigw-next/2.2.x, aigw-next/2.3.x, their release lines and the 3.x lines cut before the guardrail mirror still run the guardrail suites from before kong-ee #24163. The mirrored suites pass with no skip list on aigw-master: https://github.com/Kong/kong-ee/actions/runs/42832787719 and master: https://github.com/Kong/kong-ee/actions/runs/42837860409"
+    owner: "vincenzo.gasparo@konghq.com"
+    note: &pre_24163_guardrails_note "Drop the 2.2 line when kong-ee #24840 is merged and the 2.3 line once #24163 is backported to aigw-next/2.3.x."
+    branches: &pre_24163_guardrails_branches
+      - "*aigw*2.2.*" # aigw-next/2.2.x, aigw-release/2.2.*, aigw-2.2.* tags and PRs into 2.2.x
+      - "backport-24684-to-aigw-next/2.2x.x" # kong-ee #24871, a PR into 2.2.x the pattern above misses
+      - "*aigw*2.3.*" # the same for 2.3
+      - "backport22x-ubuntu2604-and-rhel10-support" # kong-ee #24712, a PR into 2.2.x without "aigw" in its name
+      - "next/3.12.*"
+      - "next/3.13.*"
+      - "next/3.1*.0.*" # 3.14-3.16 patch branches, cut before kong-ee #24692-#24694
+      - "release/3.1*"
+  - name: "ai-azure-content-safety-custom-guardrail"
+    reason: *pre_24163_guardrails_reason
+    owner: "vincenzo.gasparo@konghq.com"
+    note: *pre_24163_guardrails_note
+    branches: *pre_24163_guardrails_branches
+  - name: "ai-lakera-guard"
+    reason: *pre_24163_guardrails_reason
+    owner: "vincenzo.gasparo@konghq.com"
+    note: *pre_24163_guardrails_note
+    branches: *pre_24163_guardrails_branches
+  - name: "ai-gcp-model-armor"
+    reason: *pre_24163_guardrails_reason
+    owner: "vincenzo.gasparo@konghq.com"
+    note: *pre_24163_guardrails_note
+    branches: *pre_24163_guardrails_branches
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
