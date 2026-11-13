@@ -1,0 +1,31 @@
+name: Validate LLM Models
+
+on:
+  push:
+    paths:
+      - "llm-models/**"
+      - ".github/workflows/validate-llm-models.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: llm-models/tools
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate models.yaml
+        run: npm run validate
+
+      - name: Dump models.yaml on failure
+        if: failure()
+        run: cat ../models.yaml

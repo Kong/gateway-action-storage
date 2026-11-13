@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["common", "lines"],
+  "properties": {
+    "common": {
+      "type": "object",
+      "allOf": [{ "$ref": "#/definitions/models" }],
+      "minProperties": 1
+    },
+    "lines": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/branch_name" },
+      "additionalProperties": { "$ref": "#/definitions/entry" }
+    },
+    "branches": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/definitions/branch_name" },
+      "additionalProperties": { "$ref": "#/definitions/entry" }
+    },
+    "sets": {
+      "type": "object",
+      "description": "Groups of models that lines merge with a YAML merge key (<<: *anchor).",
+      "propertyNames": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "allOf": [{ "$ref": "#/definitions/models" }],
+        "minProperties": 1
+      }
+    }
+  },
+  "definitions": {
+    "branch_name": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\s*?\\[\\]~^:\\\\]+$",
+      "description": "An exact branch name. Wildcards are not supported: a line is matched by git history, not by name."
+    },
+    "models": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*(?:\\.[a-z0-9]+(?:-[a-z0-9]+)*)+(?::[a-z0-9.-]+)*$",
+        "description": "An abstract model key, as passed to getModel() in kong-ee."
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^\\S+$",
+        "description": "The concrete model id the provider receives."
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reason", "owner", "models"],
+      "properties": {
+        "reason": { "type": "string", "minLength": 1 },
+        "owner": { "type": "string", "format": "email", "minLength": 1 },
+        "note": { "type": "string" },
+        "models": { "$ref": "#/definitions/models" }
+      }
+    }
+  }
+}

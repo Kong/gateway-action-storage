@@ -10,12 +10,14 @@ workflows read files from here at a pinned ref, so the file paths, formats and
 semantics below are a public interface. Changing them can break CI in repos you
 cannot see from here.
 
-It holds two independent data sets:
+It holds three independent data sets:
 
 1. `skipped-tests/skipped.yaml`, the version-controlled E2E skip list that
    replaced the legacy `SKIP_E2E_TEST` environment variable.
 2. `.ci/runtimes*.json`, per-file test durations used by the gateway CI to
    balance and shard test runs.
+3. `llm-models/models.yaml`, the model ids the AI e2e tests call, which
+   replaced the `TESTS_LLM_MODELS_JSON*` repository variables of kong-ee.
 
 ## Layout
 
@@ -26,10 +28,16 @@ It holds two independent data sets:
 | `skipped-tests/tools/validate.js` | Schema check plus duplicate-name and duplicate-`reset_branches` checks. |
 | `skipped-tests/tools/generate.js` | Renders the compact skip string consumed by CI. Prints to stdout only. |
 | `skipped-tests/tools/report.js` | Renders a Slack digest of current skips, with per-entry age from git history. Prints to stdout only. |
-| `.githooks/pre-commit` | Fast local checks, runs only when `skipped.yaml` is staged. |
+| `.githooks/pre-commit` | Fast local checks, runs only when `skipped.yaml`, or `models.yaml`, its schema or its tools, are staged. |
 | `.github/workflows/validate-skipped-tests.yml` | CI validation on any push touching `skipped-tests/**`. |
 | `.github/workflows/slack-skip-digest.yml` | Weekly Monday cron posting the skip digest to Slack. Manual dispatch defaults to dry-run. |
 | `.ci/runtimes*.json` | Generated test-duration indexes, one variant per CI job/suite. |
+| `llm-models/models.yaml` | The model map. The only file meant to be hand-edited for model work. |
+| `llm-models/schema.json` | JSON Schema (draft-07) for `models.yaml`, enforced by `validate.js`. |
+| `llm-models/tools/validate.js` | Schema check plus sorted keys, line names (maintained branches only), set rules, and no name in both `lines` and `branches`. |
+| `llm-models/tools/ids.js` | Prints every model id in `models.yaml` as JSON (`npm run ids`); kong-ee's `ai-model-check.yml` checks them all. |
+| `llm-models/tools/audit.js` | Manual, read-only report against the live kong-ee branches. Needs an authenticated `gh`. |
+| `.github/workflows/validate-llm-models.yml` | CI validation on any push touching `llm-models/**`. |
 | `README.md` | Human-facing summary of the skip flow and YAML format. |
 
 ## Working on skipped.yaml
@@ -109,6 +117,99 @@ the `^` marker without coordinating with consumer repos.
 - Keep unrelated skip changes in separate commits with a clear message
   (for example `unskip opa tests`).
 
+## Working on llm-models/models.yaml
+
+### Setup (once per clone)
+
+```bash
+git config core.hooksPath .githooks
+cd llm-models/tools && npm ci
+```
+
+### Validate
+
+```bash
+cd llm-models/tools
+npm run validate   # prints "models.yaml is valid."; warnings do not fail it
+npm run audit      # optional: live line branches with no entry, entries with no branch
+npm run ids        # optional: every model id in the file, as JSON
+```
+
+### Semantics
+
+- `common`: the model ids every branch uses, keyed by the abstract key that kong-ee
+  passes to `getModel()`.
+- `lines`: only the lines whose models differ from `common`. A run uses exactly one
+  line, and its `models` go on top of `common`. The lines are:
+  - the version lines, always, with no entry needed: `master`, `aigw-master`,
+    `next/X.Y.x.x` from 3.10, `aigw-next/X.Y.x` from 2.2. Unlisted, they use `common`;
+  - the releases (`release/*`, `aigw-release/*`) listed here. An unlisted release is
+    not a line: its branches land on the line closest to them (its next line, or a
+    newer listed release of the same version).
+
+  kong-ee picks the line in this order:
+  1. `TESTS_LLM_MODELS_LINE`, a manual choice for a run.
+  2. The pull request target branch, when it is a line.
+  3. The branch under test, when it is a line (a push or a dispatch on a line).
+  4. The line closest to the tested commit in git history: the fewest commits the
+     commit has that the line does not, then the fewest the line has that the
+     commit does not. This is what lets a fix branch such as
+     `release-3.16.0.2-tests-fix` get the `release/3.16.0.2` models with no entry of
+     its own. When `master` or `aigw-master` is among the closest, it wins: the
+     commit left the trunk before the other lines were cut from it.
+
+  The version-line rule is duplicated in kong-ee's resolver
+  (`spec-ee/kong-api-tests/test/shared/resolve-tests-llm-models.ts`) and in
+  `validate.js`; change both together.
+- `branches`: exact branch names, applied after the line. Use one to try new model
+  ids on a feature branch, and remove it when the branch merges.
+- `sets`: named groups of models that several lines pin, such as the Gemini 2.5
+  models for lines without the Gemini 3 fix. A line merges one with a YAML merge
+  key, `<<: *anchor` or `<<: [*a, *b]`, and a key the line sets itself wins over
+  the merged one. Consumers see only the merged result. Lines whose entry would be
+  identical share it through an alias (`"release/3.16.0.2": *release_3_15_and_3_16`).
+- Before you change a `next/*` entry, add an entry for each release of that line
+  that must keep its current models. `npm run audit` lists the live releases with
+  no entry.
+- A new version line (e.g. `next/3.17.x.x`) needs nothing here.
+
+### Rules enforced by schema.json and validate.js
+
+- `common` and `lines` are required (`lines` may be empty). `reason`, `owner` and `models` are required
+  in every entry. `owner` must be a valid email.
+- Keys are sorted alphabetically in `common`, in `sets` and each set, in `lines`,
+  in `branches` and in each `models` map.
+- Branch names are exact: no wildcards.
+- A name under `lines` must be a maintained branch (`master`, `aigw-master`,
+  `next/…`, `release/…`, `aigw-next/…`, `aigw-release/…`): an error otherwise. A
+  feature branch listed as a line would also attract unrelated branches that left
+  the trunk at the same point; its models go under `branches`.
+- An entry with no models for a version line is a warning: it is a line already.
+  Models of its own on `master`/`aigw-master` are a warning: the version lines cut
+  from them get `common`, not those models.
+- A key in a `models` map that is not in `common` is a warning, not an error, since
+  old lines keep keys that `common` dropped.
+- A key a line sets to the value it already gets from `common` or its sets is a
+  warning: it changes nothing. A freeze of today's value belongs in a set, where
+  its reason is written once.
+- A merge must point at a set; every set must be merged somewhere; two sets must
+  not share a key; a set cannot merge another set.
+- Every key in a set must be in `common` (an error, unlike in a line): a set freezes
+  keys of `common`, and a typo would leave its lines on the newer model.
+- A merge goes inside `models`. To reuse a whole entry, alias it
+  (`"release/3.16.0.2": *release_3_15_and_3_16`); `<<` at entry level is rejected.
+- Duplicate keys fail the YAML parse.
+
+### Editing conventions
+
+- Two-space indent, double-quoted keys and values, as in the rest of the file.
+- Pin only keys the line's tests call (`getModel('<key>')` on that branch). A pin
+  for a key nobody calls is dead weight that every model change has to read past.
+- Put the merge key first in a `models` map. Explain a set in a comment above it.
+- Write a `reason` that says why the line differs from `common`, and link the
+  evidence (the fix the line lacks, a CI run, `https://konghq.atlassian.net/browse/AG-xxxx`).
+- Keep unrelated model changes in separate commits.
+
 ## Working on .ci/runtimes*.json
 
 These are generated data, not hand-maintained. They are JSON Lines, one object
@@ -126,6 +227,10 @@ Populated by an automated job (commit messages look like
   left alone unless you know why it changed.
 
 ## CI
+
+`.github/workflows/validate-llm-models.yml` runs on pushes touching
+`llm-models/**` and on manual dispatch. It installs with `npm ci` and runs
+`npm run validate`.
 
 `.github/workflows/validate-skipped-tests.yml` runs on pushes touching
 `skipped-tests/**` and on manual dispatch. It installs with `npm ci`, runs
@@ -163,3 +268,5 @@ If you are an agent working in a gateway repo that consumes this one:
   the skip list.
 - Read `.ci/runtimes*.json` for the suite/file you are running to pick which
   job a given spec belongs to; do not regenerate them.
+- Model ids come from `llm-models/models.yaml`. Change them only with a PR here.
+  The run log line `[tests-llm-models] line=...` says which line a run used.
