@@ -107,24 +107,16 @@ skips:
   - name: "ai-proxy-advanced-restful"
     reason: "faile on 3.13.x.x:  https://github.com/Kong/kong-ee/actions/runs/41614527307/job/125874505232?pr=22583"
     owner: "yiming.zhu@konghq.com"
-    note: "PR refs below are the PRs open against next/3.13.x.x on 2026-11-04; new PRs must be added by number."
+    note: "next/3.13.x.x^ covers PRs into next/3.13.x.x once kong-ee #24977 is merged. The PR refs below are the open PRs whose runs still use the older filter; drop them after #24977 is merged."
     branches:
       - "next/3.13.x.x"
-      - "23924/merge"
+      - "next/3.13.x.x^" # PRs into next/3.13.x.x, matched by PR base ref (kong-ee #24977)
       - "release/3.13.0.12"
       - "22583/merge" #backport-18055-to-next/3.13.x.x_1
-      - "24295/merge"
-      - "24356/merge" #3.13.0.12 release PR: brotli and KAG-9925
-      - "24382/merge"
-      - "24362/merge"
-      - "24349/merge"
       - "24338/merge"
-      - "24288/merge"
-      - "24262/merge"
       - "23969/merge"
       - "23646/merge"
       - "23237/merge"
-      - "22638/merge"
       - "22460/merge"
       - "21903/merge"
       - "21183/merge"
@@ -138,51 +130,33 @@ skips:
     owner: "jp.zhou@konghq.com"
     branches:
       - "aigw-2.0.3"
-  - name: "ai-proxy-advanced-response"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "ai-next/2.0.x"
-  - name: "ai-proxy-advanced-chat-reasoning-test-suite"
-    reason: "Flaky test"
-    owner: "jp.zhou@konghq.com"
-    branches:
-      - "ai-next/2.0.x"
   - name: "ai-proxy-advanced-image-azure"
     reason: "Gateway bug on next/3.12.x.x only https://konghq.atlassian.net/browse/AG-1533"
     owner: "vincenzo.gasparo@konghq.com"
     note: "AG-1533 - remove once #16624 is backported to next/3.12.x.x"
     branches:
       - "next/3.12.x.x"
-      - "backport-21114-to-next/3.12.x.x"
-      - "21494/merge"
   - name: "ai-proxy-advanced-image-openai"
     reason: "Gateway bug on next/3.12.x.x only: https://konghq.atlassian.net/browse/AG-1533"
     owner: "vincenzo.gasparo@konghq.com"
     note: "AG-1533 - remove once #16624 is backported to next/3.12.x.x"
     branches:
       - "next/3.12.x.x"
-      - "backport-21114-to-next/3.12.x.x"
-      - "21494/merge"
   - name: "ai-guardrail-gemini-llm-format"
     reason: "Expected failure on the aigw 2.2.1 CVE backport (kong-ee #23936): ai-aws-guardrails masking drops the Gemini 'contents' field, so Vertex returns 400. The fix (kong-ee #22745) is not a CVE fix and is not in aigw-next/2.2.x."
     owner: "meng.wang@konghq.com"
     note: "Remove after aigw 2.2.1 is released, or when #22745 is backported to aigw-next/2.2.x."
     branches:
-      - "23936/merge"
-      - "backport/aigw-2.2.x-cve-oct2026"
       - "aigw-next/2.2.x"
       - "aigw-2.2.1"
       - "aigw-2.2.1-*"
       - "aigw-release/2.2.1"
-      - "backport/24375-aigw-release-2.2.1" # kong-ee #24406, the filter reads the PR source branch
   - name: "ai-proxy-advanced-tools-use-gemini"
     reason: "Gemini 3.x returns 400 on converted function calls without a thought signature. The fix (kong-ee #22910) is not a CVE fix and is not in aigw-next/2.2.x."
     owner: "meng.wang@konghq.com"
     note: "Remove after aigw 2.2.1 is released, or when #22910 is backported to aigw-release/2.2.1. The ai-proxy-advanced-tools-use-test-suite entry below matches no spec file."
     branches:
       - "aigw-release/2.2.1"
-      - "backport/24375-aigw-release-2.2.1" # kong-ee #24406
       - "aigw-2.2.1"
       - "aigw-2.2.1-*" # release tag runs, e.g. aigw-2.2.1-rc.2
   - name: "ai-proxy-advanced-tools-use-test-suite"
@@ -210,8 +184,9 @@ skips:
       - "*aigw*2.3.*" # the same for 2.3
       - "backport22x-ubuntu2604-and-rhel10-support" # kong-ee #24712, a PR into 2.2.x without "aigw" in its name
       - "next/3.12.*"
+      - "next/3.12.x.x^" # PRs into next/3.12.x.x, once its filter matches by PR base ref
       - "next/3.13.*"
-      - "24863/merge" # kong-ee #24863, a PR into next/3.13.x.x; the 3.13 filter only sees the merge ref
+      - "next/3.13.x.x^" # PRs into next/3.13.x.x, matched by PR base ref (kong-ee #24977)
       - "next/3.1*.0.*" # 3.14-3.16 patch branches, cut before kong-ee #24692-#24694
       - "release/3.1*"
   - name: "ai-azure-content-safety-custom-guardrail"
@@ -234,5 +209,3 @@ reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
-  - "test/master/ai-guardrails-native-format-suites"
-  - "24917/merge"
