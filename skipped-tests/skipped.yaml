@@ -234,3 +234,4 @@ reset_branches:
   - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "test/master/ai-guardrails-native-format-suites"
+  - "24917/merge"
