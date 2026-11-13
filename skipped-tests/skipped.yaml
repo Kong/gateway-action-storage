@@ -211,6 +211,7 @@ skips:
       - "backport22x-ubuntu2604-and-rhel10-support" # kong-ee #24712, a PR into 2.2.x without "aigw" in its name
       - "next/3.12.*"
       - "next/3.13.*"
+      - "24863/merge" # kong-ee #24863, a PR into next/3.13.x.x; the 3.13 filter only sees the merge ref
       - "next/3.1*.0.*" # 3.14-3.16 patch branches, cut before kong-ee #24692-#24694
       - "release/3.1*"
   - name: "ai-azure-content-safety-custom-guardrail"
