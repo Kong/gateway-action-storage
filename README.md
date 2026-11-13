@@ -2,7 +2,8 @@
 
 CI configuration and E2E skip management for gateway tests.
 
-This repo replaces the legacy `SKIP_E2E_TEST` variable with a version-controlled skip list in `skipped-tests/skipped.yaml`.
+This repo replaces the legacy `SKIP_E2E_TEST` variable with a version-controlled skip list in `skipped-tests/skipped.yaml`,
+and the `TESTS_LLM_MODELS_JSON*` variables with a version-controlled model map in `llm-models/models.yaml`.
 
 ## skipped.yaml Format
 
@@ -148,4 +149,93 @@ Preview the message locally without posting:
 ```bash
 cd skipped-tests/tools
 npm run report
+```
+
+## llm-models/models.yaml
+
+The model ids the kong-ee AI e2e tests call. A test asks for an abstract key such as
+`getModel('gemini-vertex.chat.small')`, and this file maps the key to a model id.
+
+```yaml
+common:
+  "gemini-vertex.chat.small": "gemini-3.8-flash"
+
+sets:
+  # For lines without the Gemini 3 fix (#23109).
+  "gemini-2.5": &gemini_2_5
+    "gemini-vertex.chat.small": "gemini-2.5-flash"
+
+lines:
+  "release/3.16.0.2":
+    reason: "Lacks the Gemini 3 fix (#23109)."
+    owner: "email@konghq.com"
+    models:
+      <<: *gemini_2_5
+
+branches: {}
+```
+
+| Section | Required | Description |
+|---------|----------|-------------|
+| common | Yes | Model ids every branch uses |
+| sets | No | Named groups of models that lines merge with `<<: *anchor` |
+| lines | Yes (may be empty) | Only the lines whose models differ from `common`; a run uses exactly one line |
+| branches | No | Exact branch names, applied last, to try new model ids on a feature branch |
+
+A line pins only the keys its tests call, and only where the value differs from
+`common`. A group of pins that several lines share goes in `sets`, with the reason
+in a comment, and each line merges it; a key the line sets itself wins over the
+merged one. Lines whose entry would be identical share it through an alias. The
+validator warns about a pin that changes nothing.
+
+Each entry has `reason`, `owner` and `models` (required), and `note` (optional).
+
+### Which branches are lines
+
+| Branch | Is a line | Models |
+|---|---|---|
+| `master`, `aigw-master`, `next/X.Y.x.x` (from 3.10), `aigw-next/X.Y.x` (from 2.2) | always, with no entry needed | `common`, unless listed |
+| `release/*`, `aigw-release/*` | only when listed in `lines` | the listed models |
+| fix, feature, backport branches | never | the line found below |
+
+So `lines` lists only exceptions, and a new `next/X.Y.x.x` needs nothing here. A
+name under `lines` must be a maintained branch: the validator rejects anything else.
+
+### Which line a run uses
+
+kong-ee takes the first that applies:
+
+1. `TESTS_LLM_MODELS_LINE`, set by hand for one run.
+2. The pull request target branch, when it is a line.
+3. The branch under test, when it is a line (a push or a dispatch on a line).
+4. The line closest to the tested commit in git history: the fewest commits the
+   commit has that the line lacks, then the fewest the line has that the commit
+   lacks. kong-ee counts both with git (see below). When `master` or `aigw-master`
+   is among the closest, it wins: the commit left the trunk before the other lines
+   were cut from it.
+
+Rule 4 is why a fix branch needs no entry: `release-3.16.0.2-tests-fix`, cut from
+`release/3.16.0.2`, is 3 commits ahead of that line and 66 ahead of `next/3.16.x.x`,
+so it gets the release's models. The branch name plays no part.
+
+A release with no entry is not a line, so its branches land on its `next` line, or
+on a newer listed release of the same version. Before you change a `next/*` entry,
+add an entry for each release of that line that must keep its current models.
+
+The run log shows the result, for example
+`[tests-llm-models] line=release/3.16.0.2 via=history a=3 b=9; runner-up next/3.16.x.x a=66 b=204`.
+
+kong-ee makes no GitHub API call for this. In CI it reads `models.yaml` from a git
+checkout of this repo, and counts commits in a scratch repository it fills over git,
+so no API or anonymous rate limit applies. Locally it downloads `models.yaml` once an
+hour and counts with the developer's clone.
+
+### Validate and audit
+
+```bash
+cd llm-models/tools
+npm ci
+npm run validate   # schema, sorted keys, maintained-branch line names, set rules, no-op pins
+npm run audit      # live kong-ee releases with no entry, entries with no branch (needs gh)
+npm run ids        # every model id in the file as JSON, for kong-ee's model availability check
 ```
