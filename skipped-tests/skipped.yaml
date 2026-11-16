@@ -207,3 +207,6 @@ reset_branches:
   - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
   - "24952/merge"
+  - "25011/merge"
+  - "25012/merge"
+  - "25013/merge"
