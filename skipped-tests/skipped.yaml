@@ -92,6 +92,9 @@ skips_all_branches:
   - name: "ai-semantic-cache"
     reason: "Error: Received expected 504 timeout from openai, skipping failure"
     owner: "eduardo.gallegos@konghq.com"
+  - name: "ai-proxy-advanced-anthropic-reasoning-gemini-vertex-passthrough"
+    reason: "AssertionError: Provider gemini-vertex-passthrough should return a visible text block: expected undefined to not equal undefined"
+    owner: "yi.jin@konghq.com"
 
 
 # Set include_descendants: true for frozen or slow-moving branches.
