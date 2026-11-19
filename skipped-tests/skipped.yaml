@@ -155,6 +155,7 @@ skips:
       - "next/3.1*.0.*" # 3.14-3.16 patch branches, cut before kong-ee #24692-#24694
       - "release/3.1*"
       - "release/3.13.0.13^" # PRs into release/3.13.0.13, matched by PR base ref (kong-ee #25195)
+      - "release/3.16.0.3^" # PRs into release/3.16.0.3, matched by PR base ref (kong-ee #25196)
   - name: "ai-azure-content-safety-custom-guardrail"
     reason: *pre_24163_guardrails_reason
     owner: "vincenzo.gasparo@konghq.com"
