@@ -132,6 +132,18 @@ skips:
     note: "Remove after #22910 is backported to aigw-release/2.2.1"
     branches:
       - "aigw-release/2.2.1"
+  - name: "ai-guardrail-gemini-llm-format"
+    reason: "ai-aws-guardrails masking corrupts the Gemini-native request body (AG-1770): Vertex gets a request with no `contents` and 400s. Fixed on aigw-master by kong-ee #22745 and backported to aigw-next/2.2.x by #24035 (2026-11-04), but aigw-2.2.2-rc.2's build commit does not have either: https://github.com/Kong/kong-ee/actions/runs/44486599925/job/135477582738"
+    owner: "jp.zhou@konghq.com"
+    note: "Remove once #24035 (or its onward backport) lands on the aigw-2.2.2 release line"
+    branches:
+      - "aigw-2.2.2-rc.*"
+  - name: "ai-proxy-advanced-tools-use-gemini"
+    reason: "Every tool-call follow-up to gemini-3.8-flash (stage2+, once tool_calls/tool-result history is in the request) 400s on aigw-2.2.2-rc.2; stage1 (no tool history) passes. The same spec is green on current aigw-master (run 44388716714), and this RC line has been missing aigw-next/2.2.x's Gemini-related backports since 2026-11-04, so this is most likely the same missing-backport gap as ai-guardrail-gemini-llm-format rather than a new regression: https://github.com/Kong/kong-ee/actions/runs/44486599925/job/135477582940"
+    owner: "jp.zhou@konghq.com"
+    note: "Root cause not pinned to one specific commit yet; re-verify and remove once this RC line picks up the pending aigw-next/2.2.x backports"
+    branches:
+      - "aigw-2.2.2-rc.*"
   - name: "ai-proxy-advanced-restful-azure"
     reason: "AssertionError: Background Entity ID should be present: expected undefined to exist"
     owner: "vincenzo.gasparo@konghq.com"
