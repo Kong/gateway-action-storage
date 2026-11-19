@@ -137,6 +137,7 @@ skips:
       - "release/3.14.*"
       - "next/3.14.*"
       - "release-3.14.0.17-e2e-fix"
+      - "release/3.14.0.18^" # PRs into release/3.14.0.18, matched by PR base ref (kong-ee #25269)
   # The guardrail suites from before kong-ee #24163 still run on these branches; the other three
   # entries below reuse this entry's reason, note and branches.
   - name: "ai-azure-content-safety-native"
