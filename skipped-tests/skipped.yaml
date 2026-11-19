@@ -138,6 +138,12 @@ skips:
     note: "Not a product bug - remove once #24267 (or its onward backport) lands on the aigw-2.3.2 release line"
     branches:
       - "aigw-2.3.2-rc.*"
+  - name: "ai-proxy-advanced-gemini-interactions"
+    reason: "'should pass through the upstream error for a missing input' expects 404 but the public Gemini Interactions API now answers with 400 invalid_request (AG-2303): AssertionError: expected '400' to equal '404'. Fixed by kong-ee #24555 (aigw-master, 2026-11-09) and backported to aigw-next/2.3.x by #24559, but aigw-2.3.2-rc.2 branched from aigw-next/2.3.x on 2026-10-31, before either landed: https://github.com/Kong/kong-ee/actions/runs/44506407697"
+    owner: "jp.zhou@konghq.com"
+    note: "Not a product bug - remove once #24559 (or its onward backport) lands on the aigw-2.3.2 release line"
+    branches:
+      - "aigw-2.3.2-rc.*"
   - name: "ai-proxy-advanced-restful-azure"
     reason: "AssertionError: Background Entity ID should be present: expected undefined to exist"
     owner: "vincenzo.gasparo@konghq.com"
