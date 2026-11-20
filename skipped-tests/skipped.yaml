@@ -96,8 +96,8 @@ skips_all_branches:
     reason: "AssertionError: Provider gemini-vertex-passthrough should return a visible text block: expected undefined to not equal undefined"
     owner: "yi.jin@konghq.com"
   - name: "status-endpoint"
-    reason: "Keep failing: https://github.com/Kong/kong-ee/actions/runs/44476515947/job/135409515793"
-    owner: "liangwen.chen@konghq.com"
+    reason: "Keep failing in release/3.10.0.21: https://github.com/Kong/kong-ee/actions/runs/44476515947/job/135409515793"
+    owner: "kally.shi@konghq.com"
 
 # Set include_descendants: true for frozen or slow-moving branches.
 # A new commit on a listed branch stops skipping existing descendants until
