@@ -177,7 +177,8 @@ skips:
   - name: "request-callout"
     reason: "For testing only"
     owner: "kally.shi@konghq.com"
-    branches: fix/e2e-skip-empty-group-report
+    branches:
+      - "fix/e2e-skip-empty-group-report"
 
     
 reset_branches:
