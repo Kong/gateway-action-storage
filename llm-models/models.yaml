@@ -99,6 +99,8 @@ common:
   "huggingface.embeddings.medium": "sentence-transformers/all-MiniLM-L6-v2"
   "kimi.chat.batch": "kimi-k2.6"
   "kimi.chat.medium": "kimi-k3"
+  "meta.chat.small": "muse-ember-1.0"
+  "meta.responses.small": "muse-ember-1.0"
   "mistral.chat.large": "mistral-large-2512"
   "mistral.chat.large:dated": "mistral-large-2407"
   "mistral.chat.medium": "mistral-medium-2604"
