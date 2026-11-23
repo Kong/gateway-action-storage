@@ -169,6 +169,7 @@ common:
   "openai.stt.medium:new": "gpt-4o-mini-transcribe"
   "openai.tts.medium": "gpt-4o-mini-tts"
   "test.mock.medium": "try-to-override-the-model"
+  "togetherai.chat.medium": "zai-org/GLM-5.3"
   "typesafe.decisions.standard": "jev-latest"
   "vercel.chat.large": "openai/gpt-oss-120b"
   "xai.chat.large": "grok-4.3"
