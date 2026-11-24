@@ -225,13 +225,17 @@ lines:
       <<: *claude_4
       "gemini.image-gen.medium": "imagen-4.0-generate-001"
   "release/3.14.0.17": *lacks_gemini_3_and_claude_5
+  "release/3.14.0.18": *lacks_gemini_3_and_claude_5
   "release/3.15.0.7": &release_3_15_and_3_16
     reason: "Lacks the Gemini 3 fix (#23109) and the Claude 5.x fix (#23139). The Bedrock :bare pin comes from the repository variable this line used before, which recorded no reason."
     owner: "vincenzo.gasparo@konghq.com"
     models:
       <<: [*claude_4, *gemini_2_5]
       "bedrock-anthropic.chat.medium:bare": "anthropic.claude-sonnet-4-5-20250929-v1:0"
+  "release/3.15.0.8": *lacks_gemini_3_and_claude_5
   "release/3.16.0.2": *release_3_15_and_3_16
+  "release/3.16.0.3": *lacks_gemini_3_and_claude_5
+  "release/3.16.0.4": *lacks_gemini_3_and_claude_5
 
 # Exact branch names, applied last. Use one to try new model ids on a feature branch
 # before they reach a line. Remove the entry when the branch merges.
