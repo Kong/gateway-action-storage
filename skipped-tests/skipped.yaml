@@ -130,37 +130,48 @@ skips:
     note: "AG-1533 - remove once #16624 is backported to next/3.12.x.x"
     branches:
       - "next/3.12.x.x"
-  - name: "ai-proxy-advanced-tools-use-test-suite"
-    reason: "Missing https://github.com/Kong/kong-ee/pull/22910 backport into aigw-release/2.2.1"
-    owner: "vincenzo.gasparo@konghq.com"
-    note: "Remove after #22910 is backported to aigw-release/2.2.1"
-    branches:
-      - "aigw-release/2.2.1"
   - name: "ai-proxy-advanced-restful-azure"
     reason: "AssertionError: Background Entity ID should be present: expected undefined to exist"
     owner: "vincenzo.gasparo@konghq.com"
     branches:
       - "release/3.14.*"
       - "next/3.14.*"
-      - "release-3.14.0.17-e2e-fix"
       - "release/3.14.0.18^" # PRs into release/3.14.0.18, matched by PR base ref (kong-ee #25269)
   # The guardrail suites from before kong-ee #24163 still run on these branches; the other three
   # entries below reuse this entry's reason, note and branches.
   - name: "ai-azure-content-safety-native"
-    reason: &pre_24163_guardrails_reason "aigw-next/2.2.x, aigw-next/2.3.x, their release lines and the 3.x lines cut before the guardrail mirror still run the guardrail suites from before kong-ee #24163. The mirrored suites pass with no skip list on aigw-master: https://github.com/Kong/kong-ee/actions/runs/42832787719 and master: https://github.com/Kong/kong-ee/actions/runs/42837860409"
+    reason: &pre_24163_guardrails_reason "aigw-next/2.3.x, the aigw-release/2.2.* and 2.3 release lines and the 3.x lines cut before the guardrail mirror still run the guardrail suites from before kong-ee #24163. The mirrored suites pass with no skip list on aigw-master: https://github.com/Kong/kong-ee/actions/runs/42832787719 and master: https://github.com/Kong/kong-ee/actions/runs/42837860409. aigw-next/2.2.x carries them since kong-ee #24840."
     owner: "vincenzo.gasparo@konghq.com"
-    note: &pre_24163_guardrails_note "Drop the 2.2 line when kong-ee #24840 is merged and the 2.3 line once #24163 is backported to aigw-next/2.3.x."
+    note: &pre_24163_guardrails_note "Drop the 2.3 line once #24163 is backported to aigw-next/2.3.x (kong-ee #24872). Releases cut from now on from aigw-next/2.2.x or next/3.14-3.16.x.x carry the mirrored suites and need no line here."
     branches: &pre_24163_guardrails_branches
-      - "*aigw*2.2.*" # aigw-next/2.2.x, aigw-release/2.2.*, aigw-2.2.* tags and PRs into 2.2.x
-      - "backport-24684-to-aigw-next/2.2x.x" # kong-ee #24871, a PR into 2.2.x the pattern above misses
-      - "*aigw*2.3.*" # the same for 2.3
-      - "backport22x-ubuntu2604-and-rhel10-support" # kong-ee #24712, a PR into 2.2.x without "aigw" in its name
+      - "*aigw*release*2.2.*" # aigw-release/2.2.* and PRs into them named after the release (kong-ee #24123, #25574)
+      - "aigw-2.2.*" # aigw-2.2.* tags
+      - "*aigw*2.3.*" # aigw-next/2.3.x, aigw-release/2.3.*, aigw-2.3.* tags and PRs into 2.3.x
       - "next/3.12.*"
       - "next/3.12.x.x^" # PRs into next/3.12.x.x, once its filter matches by PR base ref
       - "next/3.13.*"
       - "next/3.13.x.x^" # PRs into next/3.13.x.x, matched by PR base ref (kong-ee #24977)
       - "next/3.1*.0.*" # 3.14-3.16 patch branches, cut before kong-ee #24692-#24694
-      - "release/3.1*"
+      # Releases cut before the mirror. release/3.14.0.18+, 3.15.0.8+ and later 3.16 releases carry it.
+      - "release/3.12.*"
+      - "release/3.13.*"
+      - "release/3.14.0.10"
+      - "release/3.14.0.11"
+      - "release/3.14.0.12"
+      - "release/3.14.0.13"
+      - "release/3.14.0.14"
+      - "release/3.14.0.15"
+      - "release/3.14.0.16"
+      - "release/3.14.0.17"
+      - "release/3.15.0.3"
+      - "release/3.15.0.4"
+      - "release/3.15.0.5"
+      - "release/3.15.0.6"
+      - "release/3.15.0.7"
+      - "release/3.16.0.1"
+      - "release/3.16.0.2"
+      - "release/3.16.0.3"
+      - "release/3.16.0.4"
       - "release/3.13.0.14^" # PRs into release/3.13.0.14, matched by PR base ref (kong-ee #25393)
       - "release/3.16.0.4^" # PRs into release/3.16.0.4, matched by PR base ref (kong-ee #25394)
   - name: "ai-azure-content-safety-custom-guardrail"
@@ -187,10 +198,4 @@ skips:
       - "aigw-2.2.3*" # tag runs: aigw-2.2.3-rc.* and aigw-2.2.3. A tag run has no head ref, so the filter matches the tag name.
 
 reset_branches:
-  - "tests/re-eval-skipped-at-runtime2"
-  - "AG-1101-ai-master"
   - "test/unskip-ai-proxy-advanced-tools-use"
-  - "24952/merge"
-  - "25011/merge"
-  - "25012/merge"
-  - "25013/merge"
