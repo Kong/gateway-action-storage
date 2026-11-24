@@ -207,12 +207,13 @@ sets:
 # otherwise it follows the line it came from. Lines with the same models and reason share one
 # entry through an alias.
 lines:
-  "aigw-next/2.2.x": &lacks_gemini_3_and_claude_5
+  "aigw-release/2.2.1": &lacks_gemini_3_and_claude_5
     reason: "Lacks the Gemini 3 fix (#23109) and the Claude 5.x fix (#23139)."
     owner: "vincenzo.gasparo@konghq.com"
     models:
       <<: [*claude_4, *gemini_2_5]
-  "aigw-release/2.2.1": *lacks_gemini_3_and_claude_5
+  "aigw-release/2.2.2": *lacks_gemini_3_and_claude_5
+  "aigw-release/2.2.3": *lacks_gemini_3_and_claude_5
   "next/3.10.x.x":
     reason: "Lacks the Claude 5.x fix (#23139)."
     owner: "vincenzo.gasparo@konghq.com"
