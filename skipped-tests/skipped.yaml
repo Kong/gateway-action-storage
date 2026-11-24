@@ -159,6 +159,8 @@ skips:
       - "release/3.1*"
       - "release/3.13.0.13^" # PRs into release/3.13.0.13, matched by PR base ref (kong-ee #25195)
       - "release/3.16.0.3^" # PRs into release/3.16.0.3, matched by PR base ref (kong-ee #25196)
+      - "release/3.13.0.14^" # PRs into release/3.13.0.14, matched by PR base ref (kong-ee #25393)
+      - "release/3.16.0.4^" # PRs into release/3.16.0.4, matched by PR base ref (kong-ee #25394)
   - name: "ai-azure-content-safety-custom-guardrail"
     reason: *pre_24163_guardrails_reason
     owner: "vincenzo.gasparo@konghq.com"
