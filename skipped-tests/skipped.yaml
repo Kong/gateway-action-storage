@@ -174,13 +174,7 @@ skips:
     owner: "vincenzo.gasparo@konghq.com"
     note: *pre_24163_guardrails_note
     branches: *pre_24163_guardrails_branches
-  - name: "request-callout"
-    reason: "For testing only"
-    owner: "kally.shi@konghq.com"
-    branches:
-      - "fix/e2e-skip-empty-group-report"
 
-    
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
   - "AG-1101-ai-master"
