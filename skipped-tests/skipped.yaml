@@ -180,6 +180,7 @@ skips:
     note: "#22745 is not backported to the 2.2 releases. Drop this entry when no 2.2 release gets patches."
     branches:
       - "*aigw*release*2.2.*" # aigw-release/2.2.* and PRs such as chore/aigw-release-2.2.3-cherry-picks. aigw-next/2.2.x has the fix.
+      - "aigw-2.2.3*" # tag runs: aigw-2.2.3-rc.* and aigw-2.2.3. A tag run has no head ref, so the filter matches the tag name.
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
