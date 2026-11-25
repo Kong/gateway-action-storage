@@ -138,7 +138,7 @@ skips:
   - name: "ai-azure-content-safety-native"
     reason: &pre_24163_guardrails_reason "aigw-next/2.3.x, the aigw-release/2.2.* and 2.3 release lines and the 3.x lines cut before the guardrail mirror still run the guardrail suites from before kong-ee #24163. The mirrored suites pass with no skip list on aigw-master: https://github.com/Kong/kong-ee/actions/runs/42832787719 and master: https://github.com/Kong/kong-ee/actions/runs/42837860409. aigw-next/2.2.x carries them since kong-ee #24840."
     owner: "vincenzo.gasparo@konghq.com"
-    note: &pre_24163_guardrails_note "Drop the 2.3 line once #24163 is backported to aigw-next/2.3.x (kong-ee #24872). New 3.14 and 3.15 releases carry the mirrored suites and need no line here."
+    note: &pre_24163_guardrails_note "Drop the 2.3 line once #24163 is backported to aigw-next/2.3.x (kong-ee #24872)."
     branches: &pre_24163_guardrails_branches
       - "*aigw*release*2.2.*" # aigw-release/2.2.* and PRs into them named after the release (kong-ee #24123, #25574)
       - "aigw-2.2.*" # aigw-2.2.* tags
@@ -148,23 +148,7 @@ skips:
       - "next/3.13.*"
       - "next/3.13.x.x^" # PRs into next/3.13.x.x, matched by PR base ref (kong-ee #24977)
       - "next/3.1*.0.*" # 3.14-3.16 patch branches, cut before kong-ee #24692-#24694
-      # Releases cut before the mirror. release/3.14.0.18+ and 3.15.0.8+ carry it.
-      - "release/3.12.*"
-      - "release/3.13.*"
-      - "release/3.14.0.10"
-      - "release/3.14.0.11"
-      - "release/3.14.0.12"
-      - "release/3.14.0.13"
-      - "release/3.14.0.14"
-      - "release/3.14.0.15"
-      - "release/3.14.0.16"
-      - "release/3.14.0.17"
-      - "release/3.15.0.3"
-      - "release/3.15.0.4"
-      - "release/3.15.0.5"
-      - "release/3.15.0.6"
-      - "release/3.15.0.7"
-      - "release/3.16.*" # no 3.16 release has the mirror yet, and 3.16.0.4 was cut from 3.16.0.3
+      - "release/3.1*" # every 3.x release, also the mirrored 3.14.0.18+ and 3.15.0.8+; next/3.14-3.16.x.x and PRs into releases still run the specs
       - "release/3.13.0.14^" # PRs into release/3.13.0.14, matched by PR base ref (kong-ee #25393)
       - "release/3.16.0.4^" # PRs into release/3.16.0.4, matched by PR base ref (kong-ee #25394)
   - name: "ai-azure-content-safety-custom-guardrail"
