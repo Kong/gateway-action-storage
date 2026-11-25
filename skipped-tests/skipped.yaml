@@ -94,10 +94,6 @@ skips_all_branches:
   - name: "status-endpoint"
     reason: "Keep failing in release/3.10.0.21: https://github.com/Kong/kong-ee/actions/runs/44476515947/job/135409515793"
     owner: "kally.shi@konghq.com"
-  - name: "pg-multi-host-failover"
-    reason: "Flaky test: the CI runner OOM-kills the test process at the spec teardown (exit 137) when the 3-node Postgres cluster, Kong and the reload of the env restore meet the runner memory limit. 17 of 20 matrix legs hit in the 3.17.0.0 pre-release run: https://github.com/Kong/kong-ee/actions/runs/45478272499"
-    owner: "alec.mestroni@konghq.com"
-    note: "un-skip once the teardown of the spec stops exceeding the runner memory; arm64 single-spec legs are the most marginal"
 
 # Set include_descendants: true for frozen or slow-moving branches.
 # A new commit on a listed branch stops skipping existing descendants until
