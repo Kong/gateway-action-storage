@@ -174,6 +174,12 @@ skips:
     owner: "vincenzo.gasparo@konghq.com"
     note: *pre_24163_guardrails_note
     branches: *pre_24163_guardrails_branches
+  - name: "ai-guardrail-gemini-llm-format"
+    reason: "AG-1770: the ai-aws-guardrails masking case returns 400 'at least one contents field is required' on the 2.2 releases, which lack kong-ee #22745 (mask the in-use body): https://github.com/Kong/kong-ee/actions/runs/45364325669/job/138906584328"
+    owner: "michael.xiong@konghq.com"
+    note: "#22745 is not backported to the 2.2 releases. Drop this entry when no 2.2 release gets patches."
+    branches:
+      - "*aigw*release*2.2.*" # aigw-release/2.2.* and PRs such as chore/aigw-release-2.2.3-cherry-picks. aigw-next/2.2.x has the fix.
 
 reset_branches:
   - "tests/re-eval-skipped-at-runtime2"
