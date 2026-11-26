@@ -95,31 +95,6 @@ skips_all_branches:
 # A new commit on a listed branch stops skipping existing descendants until
 # their heads include the updated tip.
 skips:
-  # The Bedrock video legs were removed from both specs by kong-ee #25632 and its backports (AG-2351).
-  # The release lines below were cut earlier and still run them. The second entry reuses this entry's
-  # reason, note and branches.
-  - name: "ai-proxy-advanced-video"
-    reason: &bedrock_video_reason "Bedrock retired amazon.nova-reel-v1:0, the model bedrock-amazon.video.medium holds (404 end of life). The release lines listed here still run the Bedrock video legs, which kong-ee #25632 removed from aigw-master, master, next/* and aigw-next/*: https://github.com/Kong/kong-ee/actions/runs/38903337220"
-    owner: "liangwen.chen@konghq.com"
-    note: &bedrock_video_note "AG-2351. Drop an entry branch when that release line gets no more patches, or take it off the list once #25632 is backported to it."
-    branches: &bedrock_video_branches
-      - "release/3.1*" # release/3.13.0.x to release/3.16.0.x
-      - "release-3.1*" # the hyphen-named release branches
-      - "tmp_release/*"
-      - "*aigw*release*" # aigw-release/2.2.*, aigw-release/2.3.* and PRs such as chore/aigw-release-2.2.3-cherry-picks
-      - "aigw-2.2.*" # tags
-      - "aigw-2.3.*" # tags
-      - "release/3.13.0.14^" # PRs into the latest release branch of each line, matched by PR base ref
-      - "release/3.14.0.20^"
-      - "release/3.15.0.10^"
-      - "release/3.16.0.4^"
-      - "aigw-release/2.2.3^"
-      - "aigw-release/2.3.3^"
-  - name: "ai-proxy-advanced-native-format-video"
-    reason: *bedrock_video_reason
-    owner: "liangwen.chen@konghq.com"
-    note: *bedrock_video_note
-    branches: *bedrock_video_branches
   - name: "ai-proxy-advanced-restful"
     reason: "faile on 3.13.x.x:  https://github.com/Kong/kong-ee/actions/runs/41614527307/job/125874505232?pr=22583"
     owner: "yiming.zhu@konghq.com"
