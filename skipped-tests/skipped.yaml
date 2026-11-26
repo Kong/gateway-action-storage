@@ -176,3 +176,7 @@ skips:
 
 reset_branches:
   - "test/unskip-ai-proxy-advanced-tools-use"
+  - "25654/merge"
+  - "25656/merge"
+  - "25657/merge"
+  - "25658/merge"
