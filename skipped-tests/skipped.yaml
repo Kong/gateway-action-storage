@@ -45,18 +45,11 @@ skips_all_branches:
     reason: "Spec side fixed in #23139 (5.x shapes, summarized thinking). Waits on the e2e lanes reading the 5.x model values: https://github.com/Kong/kong-ee/actions/runs/38563275348"
     owner: "vincenzo.gasparo@konghq.com"
     note: "un-skip once the lanes read the 5.x values"
-  - name: "ai-proxy-advanced-anthropic-reasoning-bedrock-inference-profile"
-    reason: "Same as the direct Anthropic entry; spec side fixed in #23139, which asks for the summarized thinking on this leg too"
-    owner: "vincenzo.gasparo@konghq.com"
-    note: "un-skip once the lanes read the 5.x values"
   - name: "ai-proxy-advanced-chat-reasoning-anthropic"
     reason: "Empty reasoning text with Claude 5.x (AG-2481). On aigw-master reasoning_effort none also gets a 400 and the tool-call follow-ups fail with request transformation failed"
     owner: "vincenzo.gasparo@konghq.com"
   - name: "ai-proxy-advanced-chat-reasoning-gemini-vertex-passthrough"
     reason: "Empty reasoning text with Claude 5.x (AG-2481). On aigw-master every request fails (500, anthropic_version: Field required)"
-    owner: "vincenzo.gasparo@konghq.com"
-  - name: "ai-proxy-advanced-chat-reasoning-azure-foundry"
-    reason: "Empty reasoning text with Claude 5.x (AG-2481)"
     owner: "vincenzo.gasparo@konghq.com"
   - name: "ai-proxy-advanced-chat-reasoning-bedrock-inference-profile"
     reason: "Empty reasoning text with Claude 5.x (AG-2481). On master every request gets a 403"
@@ -119,12 +112,19 @@ skips:
     branches:
       - "next/3.12.x.x"
   - name: "ai-proxy-advanced-restful-azure"
-    reason: "AssertionError: Background Entity ID should be present: expected undefined to exist"
+    reason: "The 4 Azure Responses tests get Resource not found on 3.14 gateways without kong-ee #20905. next/3.14.x.x and release/3.14.0.19+ have it and pass."
     owner: "vincenzo.gasparo@konghq.com"
+    note: "release/3.14.* also skips 3.14.0.19+, which are cut from next/3.14.x.x, where the spec runs."
     branches:
       - "release/3.14.*"
-      - "next/3.14.*"
+      - "next/3.14.0.*" # 3.14 patch branches, cut before #20905
       - "release/3.14.0.18^" # PRs into release/3.14.0.18, matched by PR base ref (kong-ee #25269)
+  - name: "ai-proxy-advanced-chat-reasoning-azure-foundry"
+    reason: "Claude 5.5 leaves the reasoning text empty on the OpenAI chat path (AG-2481). kong-ee #25286 adapts the spec on aigw-master and #25682 on aigw-next/2.2.x; the 2.3 line still asks for the text."
+    owner: "vincenzo.gasparo@konghq.com"
+    note: "Drop when the 2.3 line is retired."
+    branches:
+      - "*aigw*2.3.*" # aigw-next/2.3.x, aigw-release/2.3.*, aigw-2.3.* tags and PRs into 2.3.x named after it
   # The guardrail suites from before kong-ee #24163 still run on these branches; the other three
   # entries below reuse this entry's reason, note and branches.
   - name: "ai-azure-content-safety-native"
